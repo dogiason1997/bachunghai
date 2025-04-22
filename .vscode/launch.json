@@ -1,0 +1,13 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Debug Spring Boot",
+            "request": "launch",
+            "mainClass": "com.example.demo.DemoApplication",
+            "projectName": "BacHungHai",
+            "preLaunchTask": "Kill port 8080"
+        }
+    ]
+}

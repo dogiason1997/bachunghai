@@ -33,8 +33,7 @@
         </dependency>
         
         <dependency>
-            <!-- <groupId>com.microsoft.sqlserver</groupId>
-            <artifactId>mssql-jdbc</artifactId> -->
+
             	<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
             <scope>runtime</scope>
@@ -81,3 +80,6 @@
         </plugins>
     </build>
 </project> 
+
+            <!-- <groupId>com.microsoft.sqlserver</groupId>
+            <artifactId>mssql-jdbc</artifactId> -->

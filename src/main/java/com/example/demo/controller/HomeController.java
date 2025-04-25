@@ -8,7 +8,7 @@ public class HomeController {
     
     @GetMapping("/")
     public String home() {
-        return "Xin chào! Spring Boot đang chạy thành công!";
+        return "Xin chào Bạn đến với Dự Án Bắc Hưng Hải";
     }
     
     @GetMapping("/test")

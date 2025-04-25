@@ -6,11 +6,15 @@ services:
       plan: free
       healthCheckPath: /actuator/health
       envVars:
-          - key: SPRING_PROFILES_ACTIVE
-            value: prod
           - key: SPRING_DATASOURCE_URL
-            sync: false
+            fromDatabase:
+                name: bhh-web-db
+                property: connectionString
           - key: SPRING_DATASOURCE_USERNAME
-            sync: false
+            fromDatabase:
+                name: bhh-web-db
+                property: user
           - key: SPRING_DATASOURCE_PASSWORD
-            sync: false
+            fromDatabase:
+                name: bhh-web-db
+                property: password

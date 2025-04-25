@@ -14,19 +14,19 @@ public class Users {
     @Column(name = "Id_User")
     private Integer idUser;
 
-    @Column(name = "FullName", nullable = false, length = 200, columnDefinition = "NVARCHAR(100)")
+    @Column(name = "FullName", nullable = false, length = 200)
     private String fullName;
 
-    @Column(name = "Username", nullable = false, length = 100, unique = true, columnDefinition = "NVARCHAR(100)")
+    @Column(name = "Username", nullable = false, length = 100, unique = true)
     private String username;
 
     @Column(name = "Passwords", nullable = false, length = 200)
     private String passwords;
 
-    @Column(name = "Email", nullable = false, length = 200, unique = true, columnDefinition = "NVARCHAR(100)")
+    @Column(name = "Email", nullable = false, length = 200, unique = true)
     private String email;
 
-    @Column(name = "Roles", nullable = false, length = 20, columnDefinition = "NVARCHAR(100)")
+    @Column(name = "Roles", nullable = false, length = 100)
     @Enumerated(EnumType.STRING)
     private UserRole roles;
 

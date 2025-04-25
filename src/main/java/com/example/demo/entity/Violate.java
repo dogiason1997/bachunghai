@@ -17,10 +17,10 @@ public class Violate {
     @Column(name = "Id_User", nullable = false)
     private Integer idUser;
 
-    @Column(name = "Locations", length = 200,columnDefinition = "NVARCHAR(100)")
+    @Column(name = "Locations", length = 200)
     private String locations;
 
-    @Column(name = "Type_Violation", length = 100,columnDefinition = "NVARCHAR(100)")
+    @Column(name = "Type_Violation", length = 100)
     private String typeViolation;
 
     @Column(name = "Date_Discovery")
@@ -46,22 +46,22 @@ public class Violate {
     @Column(name = "Longitude", precision = 9, scale = 6)
     private BigDecimal longitude;
 
-    @Column(name = "Name_Violation", length = 200,columnDefinition = "NVARCHAR(100)")
+    @Column(name = "Name_Violation", length = 200)
     private String nameViolation;
 
-    @Column(name = "Cmnd_Violation", length = 50, unique = true,columnDefinition = "NVARCHAR(100)")
+    @Column(name = "Cmnd_Violation", length = 50, unique = true)
     private String cmndViolation;
 
-    @Column(name = "Tell_Violation", length = 20,columnDefinition = "NVARCHAR(100)")
+    @Column(name = "Tell_Violation", length = 100)
     private String tellViolation;
 
-    @Column(name = "Organize", length = 200,columnDefinition = "NVARCHAR(100)")
+    @Column(name = "Organize", length = 200)
     private String organize;
 
-    @Column(name = "Addresss", length = 300,columnDefinition = "NVARCHAR(100)")
+    @Column(name = "Addresss", length = 300)
     private String addresss;
 
-    @Column(name = "Describe_Violation", columnDefinition = "NVARCHAR(MAX)")
+    @Column(name = "Describe_Violation",length = 100)
     private String describeViolation;
 
     @Column(name = "File_Violation")

@@ -13,13 +13,13 @@ public class CanalRoute {
     @Column(name = "Id_CanalRoute")
     private Integer idCanalRoute;
 
-    @Column(name = "Name_CanalRoute", nullable = false, length = 100,columnDefinition = "NVARCHAR(100)")
+    @Column(name = "Name_CanalRoute", nullable = false, length = 100)
     private String nameCanalRoute;
 
-    @Column(name = "CanalRoute_Code", nullable = false, length = 50,columnDefinition = "NVARCHAR(100)")
+    @Column(name = "CanalRoute_Code", nullable = false, length = 100)
     private String canalRouteCode;
 
-    @Column(name = "Describe", columnDefinition = "NVARCHAR(MAX)")
+    @Column(name = "Describe", columnDefinition = "TEXT")
     private String describe;
 
     // Relationships

@@ -13,13 +13,13 @@ public class Plans {
     @Column(name = "Id_Plan")
     private Integer idPlan;
 
-    @Column(name = "Title", nullable = false, length = 200,columnDefinition = "NVARCHAR(100)")
+    @Column(name = "Title", nullable = false, length = 200)
     private String title;
 
     @Column(name = "Id_User", nullable = false)
     private Integer idUser;
 
-    @Column(name = "Statuss", nullable = false, length = 20,columnDefinition = "NVARCHAR(100)")
+    @Column(name = "Statuss", nullable = false, length = 20)
     @Enumerated(EnumType.STRING)
     private PlanStatus statuss;
 
@@ -29,14 +29,14 @@ public class Plans {
     @Column(name = "EndDate", nullable = false)
     private LocalDateTime endDate;
 
-    @Column(name = "Content", columnDefinition = "NVARCHAR(100)")
+    @Column(name = "Content",length = 100)
     private String content;
 
     @Column(name = "Files")
     @Lob
     private byte[] files;
 
-    @Column(name = "Prioritize", nullable = false, length = 20,columnDefinition = "NVARCHAR(100)")
+    @Column(name = "Prioritize", nullable = false, length = 100)
     @Enumerated(EnumType.STRING)
     private PlanPriority prioritize;
 

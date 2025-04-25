@@ -16,32 +16,32 @@ public class Document {
     @Column(name = "Id_User", nullable = false)
     private Integer idUser;
 
-    @Column(name = "Text_Type", nullable = false, length = 50,columnDefinition = "NVARCHAR(100)")
+    @Column(name = "Text_Type", nullable = false, length = 100)
     @Enumerated(EnumType.STRING)
     private TextType textType;
 
-    @Column(name = "Text_Form", nullable = false, length = 50,columnDefinition = "NVARCHAR(100)")
+    @Column(name = "Text_Form", nullable = false, length = 100)
     @Enumerated(EnumType.STRING)
     private TextForm textForm;
 
-    @Column(name = "Document_Number", nullable = false, length = 100, unique = true,columnDefinition = "NVARCHAR(100)")
+    @Column(name = "Document_Number", nullable = false, length = 100, unique = true)
     private String documentNumber;
 
-    @Column(name = "Abstract", columnDefinition = "NVARCHAR(100)")
+    @Column(name = "Abstract", length = 100 )
     private String abstractText;
 
-    @Column(name = "Content", columnDefinition = "NVARCHAR(100)")
+    @Column(name = "Content", length = 100)
     private String content;
 
-    @Column(name = "Field", nullable = false, length = 50,columnDefinition = "NVARCHAR(100)")
+    @Column(name = "Field", nullable = false, length = 100)
     @Enumerated(EnumType.STRING)
     private DocumentField field;
 
-    @Column(name = "Issuing_Agency", nullable = false, length = 100,columnDefinition = "NVARCHAR(100)")
+    @Column(name = "Issuing_Agency", nullable = false, length = 100)
     @Enumerated(EnumType.STRING)
     private IssuingAgency issuingAgency;
 
-    @Column(name = "Signer", length = 100,columnDefinition = "NVARCHAR(100)")
+    @Column(name = "Signer", length = 100)
     private String signer;
 
     @Column(name = "Date_of_Issue")

@@ -24,13 +24,13 @@ public class Operation {
     @Column(name = "Year_Operation", nullable = false)
     private Integer yearOperation;
 
-    @Column(name = "Operation", nullable = false, length = 20,columnDefinition = "NVARCHAR(100)")
+    @Column(name = "Operation", nullable = false, length = 100)
     private String operation;
 
-    @Column(name = "Activity", nullable = false, length = 20,columnDefinition = "NVARCHAR(100)")
+    @Column(name = "Activity", nullable = false, length = 100)
     private String activity;
 
-    @Column(name = "Station_Operation", length = 200,columnDefinition = "NVARCHAR(100)")
+    @Column(name = "Station_Operation", length = 200)
     private String stationOperation;
 
     // Relationships

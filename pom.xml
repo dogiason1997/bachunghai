@@ -19,6 +19,7 @@
     
     <properties>
         <java.version>17</java.version>
+         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
     
     <dependencies>
@@ -36,7 +37,7 @@
 
             	<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
-            <version>42.7.3</version> 
+            <!-- <version>42.7.3</version>  -->
             <scope>runtime</scope>
         </dependency>
         <dependency>
@@ -70,6 +71,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
+                <encoding>${project.build.sourceEncoding}</encoding>
                     <excludes>
                         <exclude>
                             <groupId>org.projectlombok</groupId>

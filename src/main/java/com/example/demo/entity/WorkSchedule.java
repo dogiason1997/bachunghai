@@ -26,13 +26,13 @@ public class WorkSchedule {
     @Column(name = "Hour_End", nullable = false)
     private LocalTime hourEnd;
 
-    @Column(name = "Content_Work", columnDefinition = "NVARCHAR(MAX)")
+    @Column(name = "Content_Work", columnDefinition = "TEXT")
     private String contentWork;
 
-    @Column(name = "Participants", columnDefinition = "NVARCHAR(MAX)")
+    @Column(name = "Participants", columnDefinition = "TEXT")
     private String participants;
 
-    @Column(name = "Locations", length = 200,columnDefinition = "NVARCHAR(100)")
+    @Column(name = "Locations", length = 200)
     private String locations;
 
     // Relationships

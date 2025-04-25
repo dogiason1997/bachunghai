@@ -13,13 +13,13 @@ public class Dispatch {
     @Column(name = "Id_Dispatch")
     private Integer idDispatch;
 
-    @Column(name = "Dispatch_Code", nullable = false, length = 100, unique = true,columnDefinition = "NVARCHAR(100)")
+    @Column(name = "Dispatch_Code", nullable = false, length = 100, unique = true)
     private String dispatchCode;
 
-    @Column(name = "Place_Sending", length = 200,columnDefinition = "NVARCHAR(100)")
+    @Column(name = "Place_Sending", length = 100)
     private String placeSending;
 
-    @Column(name = "Signer_Dispatch", length = 200,columnDefinition = "NVARCHAR(100)")
+    @Column(name = "Signer_Dispatch", length = 200)
     private String signerDispatch;
 
     @Column(name = "Date_Sent")
@@ -28,14 +28,14 @@ public class Dispatch {
     @Column(name = "Day_Arrives")
     private LocalDateTime dayArrives;
 
-    @Column(name = "Abstracts", columnDefinition = "NVARCHAR(MAX)")
+    @Column(name = "Abstracts", columnDefinition = "TEXT")
     private String abstracts;
 
-    @Column(name = "Status", nullable = false, length = 20,columnDefinition = "NVARCHAR(100)")
+    @Column(name = "Status", nullable = false, length = 100)
     @Enumerated(EnumType.STRING)
     private DispatchStatus status;
 
-    @Column(name = "Prioritize", nullable = false, length = 20,columnDefinition = "NVARCHAR(100)")
+    @Column(name = "Prioritize", nullable = false, length = 100)
     @Enumerated(EnumType.STRING)
     private DispatchPriority prioritize;
 

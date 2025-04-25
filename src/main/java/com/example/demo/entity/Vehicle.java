@@ -16,13 +16,13 @@ public class Vehicle {
     @Column(name = "Id_User", nullable = false)
     private Integer idUser;
 
-    @Column(name = "Title", nullable = false, length = 200,columnDefinition = "NVARCHAR(100)")
+    @Column(name = "Title", nullable = false, length = 200)
     private String title;
 
     @Column(name = "Size", nullable = false)
     private Long size;
 
-    @Column(name = "Typess", nullable = false, length = 50,columnDefinition = "NVARCHAR(100)")
+    @Column(name = "Typess", nullable = false, length = 100)
     private String typess;
 
     @Column(name = "CreationDate", nullable = false)

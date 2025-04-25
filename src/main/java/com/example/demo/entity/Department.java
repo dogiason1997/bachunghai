@@ -13,13 +13,13 @@ public class Department {
     @Column(name = "Id_PhongBan")
     private Integer idPhongBan;
 
-    @Column(name = "Name_Department", nullable = false, length = 100,columnDefinition = "NVARCHAR(100)")
+    @Column(name = "Name_Department", nullable = false, length = 100)
     private String nameDepartment;
 
-    @Column(name = "Department_Code", nullable = false, length = 50,columnDefinition = "NVARCHAR(50)",unique = true)
+    @Column(name = "Department_Code", nullable = false, length = 50,unique = true)
     private String departmentCode;
 
-    @Column(name = "Describe", columnDefinition = "NVARCHAR(MAX)")
+    @Column(name = "Describe", columnDefinition = "TEXT")
     private String describe;
 
     // Relationships

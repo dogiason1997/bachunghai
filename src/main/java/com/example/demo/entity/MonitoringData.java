@@ -16,7 +16,7 @@ public class MonitoringData {
     @Column(name = "Id_User", nullable = false)
     private Integer idUser;
 
-    @Column(name = "Station", nullable = false, length = 200,columnDefinition = "NVARCHAR(100)")
+    @Column(name = "Station", nullable = false, length = 100)
     private String station;
 
     @Column(name = "Day_Data", nullable = false)

@@ -13,10 +13,10 @@ public class Article {
     @Column(name = "Id_Article")
     private Integer idArticle;
 
-    @Column(name = "Title", nullable = false, length = 200,unique = true, columnDefinition = "NVARCHAR(100)")
+    @Column(name = "Title", nullable = false, length = 200,unique = true)
     private String title;
 
-    @Column(name = "Category", nullable = false, length = 20, columnDefinition = "NVARCHAR(100)")
+    @Column(name = "Category", nullable = false, length = 100)
     @Enumerated(EnumType.STRING)
     private ArticleCategory category;
 
@@ -34,7 +34,7 @@ public class Article {
     @Enumerated(EnumType.STRING)
     private ArticleStatus statuss;
 
-    @Column(name = "Content", columnDefinition = "NVARCHAR(100)")
+    @Column(name = "Content", columnDefinition = "TEXT")
     private String content;
 
     // Relationships

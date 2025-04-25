@@ -13,27 +13,27 @@ public class Notification {
     @Column(name = "Id_Notification")
     private Integer idNotification;
 
-    @Column(name = "Title", nullable = false, length = 200, unique = true, columnDefinition = "NVARCHAR(100)")
+    @Column(name = "Title", nullable = false, length = 200, unique = true)
     private String title;
 
     @Column(name = "Id_User", nullable = false)
     private Integer idUser;
 
-    @Column(name = "Category", nullable = false, length = 30, columnDefinition = "NVARCHAR(100)")
+    @Column(name = "Category", nullable = false, length = 300)
     @Enumerated(EnumType.STRING)
     private NotificationCategory category;
 
-    @Column(name = "Content", columnDefinition = "NVARCHAR(100)")
+    @Column(name = "Content", length = 100)
     private String content;
 
-    @Column(name = "Statuss", nullable = false, length = 20,columnDefinition = "NVARCHAR(100)")
+    @Column(name = "Statuss", nullable = false, length = 20)
     @Enumerated(EnumType.STRING)
     private NotificationStatus statuss;
 
     @Column(name = "CreationDate", nullable = false)
     private LocalDateTime creationDate;
 
-    @Column(name = "Tags", length = 200,columnDefinition = "NVARCHAR(100)")
+    @Column(name = "Tags", length = 200)
     private String tags;
 
     @Column(name = "Image")

@@ -13,13 +13,13 @@ public class DispatchArrived {
     @Column(name = "Id_DispatchArrived")
     private Integer idDispatchArrived;
 
-    @Column(name = "DispatchArrived_Code", nullable = false, length = 100, unique = true,columnDefinition = "NVARCHAR(100)")
+    @Column(name = "DispatchArrived_Code", nullable = false, length = 100, unique = true)
     private String dispatchArrivedCode;
 
-    @Column(name = "Place_Sending", length = 200,columnDefinition = "NVARCHAR(100)")
+    @Column(name = "Place_Sending", length = 200)
     private String placeSending;
 
-    @Column(name = "Signer_DispatchArrived", length = 200,columnDefinition = "NVARCHAR(100)")
+    @Column(name = "Signer_DispatchArrived", length = 200)
     private String signerDispatchArrived;
 
     @Column(name = "Date_Sent")
@@ -28,7 +28,7 @@ public class DispatchArrived {
     @Column(name = "Day_Arrives")
     private LocalDateTime dayArrives;
 
-    @Column(name = "Abstracts", columnDefinition = "NVARCHAR(MAX)")
+    @Column(name = "Abstracts", columnDefinition = "TEXT")
     private String abstracts;
 
     @Column(name = "Status", nullable = false, length = 20)

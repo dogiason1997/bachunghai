@@ -12,13 +12,13 @@ public class ContactFeedback {
     @Column(name = "Id_Contact")
     private Integer idContact;
 
-    @Column(name = "FullName", nullable = false, length = 200,columnDefinition = "NVARCHAR(100)")
+    @Column(name = "FullName", nullable = false, length = 200)
     private String fullName;
 
-    @Column(name = "Email", nullable = false, length = 200,columnDefinition = "NVARCHAR(100)")
+    @Column(name = "Email", nullable = false, length = 200)
     private String email;
 
-    @Column(name = "Title", nullable = false, columnDefinition = "NVARCHAR(MAX)")
+    @Column(name = "Title", nullable = false, columnDefinition = "TEXT")
     private String title;
 
     @Column(name = "Id_User", nullable = false)

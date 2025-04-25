@@ -1,3 +1,10 @@
+databases:
+    - name: bhh-web-db
+      databaseName: bhh_web_db
+      user: bhh_web_db
+      plan: free
+      region: singapore
+
 services:
     - type: web
       name: bhh-api

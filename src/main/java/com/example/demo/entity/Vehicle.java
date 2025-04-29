@@ -1,8 +1,11 @@
+
 package com.example.demo.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import java.time.LocalDateTime;
+
+import java.time.LocalDate;
+
 
 @Data
 @Entity
@@ -26,7 +29,7 @@ public class Vehicle {
     private String typess;
 
     @Column(name = "CreationDate", nullable = false)
-    private LocalDateTime creationDate;
+    private LocalDate creationDate;
 
     @ManyToOne
     @JoinColumn(name = "Id_User", insertable = false, updatable = false)

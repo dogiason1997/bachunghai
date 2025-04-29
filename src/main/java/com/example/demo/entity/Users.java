@@ -2,6 +2,8 @@ package com.example.demo.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -14,31 +16,36 @@ public class Users {
     @Column(name = "Id_User")
     private Integer idUser;
 
-    @Column(name = "FullName", nullable = false, length = 200)
+    @Column(name = "FullName", length = 200)
     private String fullName;
 
-    @Column(name = "Username", nullable = false, length = 100, unique = true)
+    @Column(name = "Username", length = 100, unique = true)
     private String username;
 
-    @Column(name = "Passwords", nullable = false, length = 200)
-    private String passwords;
+    @Column(name = "Password", length = 200)
+    private String password;
 
-    @Column(name = "Email", nullable = false, length = 200, unique = true)
+    @Column(name = "Email", length = 200, unique = true)
     private String email;
 
-    @Column(name = "Roles", nullable = false, length = 100)
-    @Enumerated(EnumType.STRING)
-    private UserRole roles;
+    @Column(name = "Position", length = 100)
+    private String position;
 
-    @Column(name = "Id_PhongBan", nullable = false)
+    @Column(name = "enabled" )
+    private Boolean enabled;
+
+    @Column(name = "Roles", nullable = true, length = 100)
+    private String roles;
+
+    @Column(name = "Id_PhongBan")
     private Integer idPhongBan;
 
-    @Column(name = "Statuss", nullable = false, length = 20)
+    @Column(name = "Statuss", length = 20)
     @Enumerated(EnumType.STRING)
     private UserStatus statuss;
 
     @Column(name = "DateOfBirth")
-    private LocalDateTime dateOfBirth;
+    private LocalDate dateOfBirth;
 
     // Relationships
     @ManyToOne
@@ -80,10 +87,6 @@ public class Users {
 
     @OneToMany(mappedBy = "user")
     private List<Operation> operations;
-
-    public enum UserRole {
-        Admin, Guest, Station, Department
-    }
 
     public enum UserStatus {
         active, inactive

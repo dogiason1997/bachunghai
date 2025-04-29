@@ -3,7 +3,8 @@ package com.example.demo.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+
 
 @Data
 @Entity
@@ -24,7 +25,7 @@ public class Violate {
     private String typeViolation;
 
     @Column(name = "Date_Discovery")
-    private LocalDateTime dateDiscovery;
+    private LocalDate dateDiscovery;
 
     @Column(name = "Levels", nullable = false, length = 20)
     @Enumerated(EnumType.STRING)

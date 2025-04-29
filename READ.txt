@@ -1,0 +1,6 @@
+Thêm vào bảng authorities và users
+INSERT INTO users (username, password ,enabled)
+VALUES ('user3', '$2a$10$ITiDvN7vlir.7jJxOCPFtuXaYNPcv/gbm7rhxuqYbLBMISFajZTCS',true);
+
+INSERT INTO authorities (id_user, username, authority)
+VALUES (1, 'user3', 'ROLE_USER');

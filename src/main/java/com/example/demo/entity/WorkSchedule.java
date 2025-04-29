@@ -2,7 +2,9 @@ package com.example.demo.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import java.time.LocalDateTime;
+
+import java.time.LocalDate;
+
 import java.time.LocalTime;
 
 @Data
@@ -18,7 +20,7 @@ public class WorkSchedule {
     private Integer idUser;
 
     @Column(name = "Date_Work", nullable = false)
-    private LocalDateTime dateWork;
+    private LocalDate dateWork;
 
     @Column(name = "Hour_Start", nullable = false)
     private LocalTime hourStart;

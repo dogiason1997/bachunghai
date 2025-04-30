@@ -18,8 +18,8 @@ public interface UserRepository extends JpaRepository<Users, Integer> {
 //            "FROM Users u JOIN u.authorities a")
 //    Page<CreateUserDTO> findAllUsersWithAuthorities(Pageable pageable);
 
-@Query("SELECT u FROM Users u")
-Page<Users> findAllUsersWithAuthorities(Pageable pageable);
+   @Query("SELECT u FROM Users u")
+   Page<Users> findAllUsersWithAuthorities(Pageable pageable);
 
    @Query("SELECT u FROM Users u WHERE u.idUser = :id")
    Optional<Users> findUserById(@Param("id") Integer id);

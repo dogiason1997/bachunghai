@@ -112,4 +112,85 @@ public class UserService {
         }
         return Optional.empty();
     }
+
+
+    // Xóa nhân viên
+public void deleteUser(Integer id) {
+    Optional<Users> userOpt = userRepository.findById(id);
+    if (!userOpt.isPresent()) {
+        throw new IllegalArgumentException("User không tồn tại!");
+    }
+    // Xóa quyền trước (nếu có ràng buộc foreign key)
+    Users user = userOpt.get();
+    List<Authorities> authorities = user.getAuthorities();
+    if (authorities != null) {
+        for (Authorities auth : authorities) {
+            authoritiesRepository.delete(auth);
+        }
+    }
+    userRepository.deleteById(id);
+}
+
+// Cập nhật nhân viên
+public CreateUserDTO updateUser(Integer id, CreateUserDTO updateUserDTO) {
+    Optional<Users> userOpt = userRepository.findById(id);
+    if (!userOpt.isPresent()) {
+        throw new IllegalArgumentException("User không tồn tại!");
+    }
+    Users user = userOpt.get();
+
+    // Kiểm tra nếu username/email mới đã tồn tại ở user khác
+    if (!user.getUsername().equals(updateUserDTO.getUsername()) && userRepository.existsByUsername(updateUserDTO.getUsername())) {
+        throw new IllegalArgumentException("Username đã tồn tại trong hệ thống!");
+    }
+    if (!user.getEmail().equals(updateUserDTO.getEmail()) && userRepository.existsByEmail(updateUserDTO.getEmail())) {
+        throw new IllegalArgumentException("Email đã tồn tại trong hệ thống!");
+    }
+
+    user.setUsername(updateUserDTO.getUsername());
+    if (updateUserDTO.getPassword() != null && !updateUserDTO.getPassword().isEmpty()) {
+        user.setPassword(passwordEncoder.encode(updateUserDTO.getPassword()));
+    }
+    user.setFullName(updateUserDTO.getFullName());
+    user.setEmail(updateUserDTO.getEmail());
+    user.setEnabled(updateUserDTO.getEnabled() != null ? updateUserDTO.getEnabled() : true);
+
+    // 1. Xóa hết các quyền cũ của user
+    List<Authorities> oldAuthorities = authoritiesRepository.findByUser(user);
+for (Authorities auth : oldAuthorities) {
+    if (authoritiesRepository.existsById(auth.getId())) {
+        authoritiesRepository.delete(auth);
+    }
+}
+    // 2. Thêm các quyền mới
+    List<String> newAuthorities = updateUserDTO.getAuthorities();
+    if (newAuthorities == null || newAuthorities.isEmpty()) {
+        newAuthorities = java.util.Collections.singletonList("MEMBER");
+    }
+    for (String auth : newAuthorities) {
+        Authorities authority = new Authorities();
+        authority.setAuthority(auth);
+        authority.setUser(user);
+        authoritiesRepository.save(authority);
+    }
+
+    Users savedUser = userRepository.save(user);
+
+    // Trả về DTO mới
+    List<String> authoritiesList = new java.util.ArrayList<String>();
+    List<Authorities> authoritiesEntities = savedUser.getAuthorities();
+    if (authoritiesEntities != null) {
+        for (Authorities auth : authoritiesEntities) {
+            authoritiesList.add(auth.getAuthority());
+        }
+    }
+    return new CreateUserDTO(
+        savedUser.getUsername(),
+        savedUser.getPassword(),
+        savedUser.getFullName(),
+        savedUser.getEmail(),
+        savedUser.getEnabled(),
+        authoritiesList
+    );
+}
 }

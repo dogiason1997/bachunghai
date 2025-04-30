@@ -37,4 +37,26 @@ public class UserController {
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
+
+    @DeleteMapping("/users/{id}")
+    public ResponseEntity<?> deleteUser(@PathVariable Integer id) {
+        try{
+            userService.deleteUser(id);
+            return ResponseEntity.ok().body("Xóa nhân viên thành công");
+        }catch(IllegalArgumentException ex){
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @PutMapping("/users/{id}")
+    public ResponseEntity<CreateUserDTO> updateUser(@PathVariable Integer id, @RequestBody CreateUserDTO updateUserDTO) {
+        try {
+            CreateUserDTO updatedUser = userService.updateUser(id, updateUserDTO);
+            return ResponseEntity.ok(updatedUser);
+        } catch (IllegalArgumentException ex) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+
 }

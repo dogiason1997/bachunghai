@@ -22,24 +22,32 @@ public class AuthToken {
     @Column(name = "Token", nullable = false, unique = true, length = 500)
     private String jwtToken;
 
-    @Column(name = "Username", nullable = false, length = 50)
-    private String username;
-
-    @ElementCollection
-    @CollectionTable(name = "AuthToken_Roles", joinColumns = @JoinColumn(name = "Id_Token"))
-    @Column(name = "Role")
-    private List<String> roles;
-
+    
     @Column(name = "expiration_time", nullable = false)
     private LocalDateTime expirationTime;
 
-    public AuthToken(String username, List<String> roles, String jwtToken) {
-        this.username = username;
-        this.roles = roles;
-        this.jwtToken = jwtToken;
-        this.expirationTime = LocalDateTime.now().plusHours(1); // Token expires in 1 hour
-    }
+    
+    @ManyToOne
+    @JoinColumn(name = "Id_User", nullable = true)
+    private Users user;
 
-    public AuthToken() {
-    }
+    @OneToMany(mappedBy = "authToken", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Authorities> authorities;
+
+
+    
+    // @ElementCollection
+    // @CollectionTable(name = "AuthToken_Permissions", joinColumns = @JoinColumn(name = "Id_Token"))
+    // @Column(name = "Permission")
+    // private List<String> Permission;
+
+    // public AuthToken(String username, List<String> permissions, String jwtToken) {
+    //     this.username = username;
+    //     this.Permission = permissions;
+    //     this.jwtToken = jwtToken;
+    //     this.expirationTime = LocalDateTime.now().plusHours(1); // Token expires in 1 hour
+    // }
+
+//     public AuthToken() {
+//     }
 }

@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dto.DepartmentDTO;
@@ -31,6 +33,10 @@ public class DepartmentService {
         //     dtoList.add(dto);
         // }
         // return dtoList;
+    }
+
+    public Page<DepartmentDTO> getAllDepartmentsPaged(Pageable pageable) {
+        return departmentRepository.findAll(pageable).map(departmentMapper::toDTO);
     }
 
     public DepartmentDTO getDepartmentById(Integer id) {

@@ -6,6 +6,7 @@ import lombok.Data;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.ArrayList;
 
 @Data
 @Entity
@@ -52,6 +53,16 @@ public class Users {
     @JoinColumn(name = "Id_PhongBan", insertable = false, updatable = false)
     private Department department;
 
+///
+    @OneToMany(mappedBy = "user")
+    private List<Authorities> authorities;
+
+    @OneToMany(mappedBy = "user")
+    private List<AuthToken> AuthToken;
+    ///
+
+
+
     @OneToMany(mappedBy = "user")
     private List<Article> articles;
 
@@ -91,4 +102,5 @@ public class Users {
     public enum UserStatus {
         active, inactive
     }
-} 
+
+}

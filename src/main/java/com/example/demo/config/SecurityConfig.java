@@ -47,10 +47,10 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
-    @Bean
-    public UserDetailsService userDetailsService(DataSource dataSource) {
-        return new JdbcUserDetailsManager(dataSource);
-    }
+    // @Bean
+    // public UserDetailsService userDetailsService(DataSource dataSource) {
+    //     return new JdbcUserDetailsManager(dataSource);
+    // }
 
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration builder) throws Exception {
@@ -61,7 +61,7 @@ public class SecurityConfig {
         http.authorizeHttpRequests(authorizeRequests ->
                 authorizeRequests
                 .requestMatchers("/swagger-ui.html", "/v3/api-docs/**", "/swagger-ui/**").permitAll() // Cho phép truy cập không cần xác thực
-                        .requestMatchers("/signin").permitAll()
+                        .requestMatchers("/signin","/register").permitAll()
                         .anyRequest().authenticated());
         http.sessionManagement(
                 session ->
@@ -81,6 +81,29 @@ public class SecurityConfig {
 
         return http.build();
     }
+
+    @Bean
+    public UserDetailsService userDetailsService(DataSource dataSource) {
+    JdbcUserDetailsManager mgr = new JdbcUserDetailsManager(dataSource);
+
+    // Câu query để load user (nếu bạn chưa đổi)
+    mgr.setUsersByUsernameQuery(
+      "SELECT Username, Password, enabled " +
+      "FROM Users " +
+      "WHERE Username = ?"
+    );
+
+    // Câu query để load authorities qua Id_User
+    mgr.setAuthoritiesByUsernameQuery(
+      "SELECT u.Username AS username, a.authority " +
+      "FROM authorities a " +
+      "JOIN Users u ON a.Id_User = u.Id_User " +
+      "WHERE u.Username = ?"
+    );
+
+    return mgr;
+}
+
 
  
 

@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.Utils.JwtUtils;
 import com.example.demo.entity.AuthToken;
+import com.example.demo.entity.Authorities;
 import com.example.demo.entity.Users;
 
 
@@ -37,20 +38,20 @@ public class GreettingController {
 
 
 
-    @PreAuthorize("hasAnyRole('EMPLOYEE')")
+    @PreAuthorize("hasAnyAuthority('EMPLOYEE')")
     @GetMapping("/hello")
     public String sayHello(){
         return "Hello";
     }
 
 
-    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
+    @PreAuthorize("hasAnyAuthority('USER', 'ADMIN')")
     @GetMapping("/user")
     public String userEndpoint(){
         return "Hello, User!";
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/admin")
     public String adminEndpoint(){
         return "Hello, Admin!";
@@ -69,18 +70,23 @@ public class GreettingController {
             map.put("status", false);
             return new ResponseEntity<Object>(map, HttpStatus.NOT_FOUND);
         }
-
+        
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
 
         String jwtToken = jwtUtils.generateTokenFromUsername(userDetails);
 
-        List<String> roles = userDetails.getAuthorities().stream()
-                .map(item -> item.getAuthority())
+        // Lấy danh sách quyền từ UserDetails
+        List<String> authorities = userDetails.getAuthorities().stream()
+                .map(grantedAuthority -> grantedAuthority.getAuthority())
                 .collect(Collectors.toList());
 
-        AuthToken response = new AuthToken(userDetails.getUsername(), roles, jwtToken);
+        // Tạo phản hồi
+        Map<String, Object> response = new HashMap<>();
+        response.put("username", userDetails.getUsername());
+        response.put("jwtToken", jwtToken);
+        response.put("authorities", authorities);
 
         return ResponseEntity.ok(response);
     }

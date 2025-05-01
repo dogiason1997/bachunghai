@@ -35,9 +35,6 @@ public class Users {
     @Column(name = "enabled" )
     private Boolean enabled;
 
-    @Column(name = "Roles", nullable = true, length = 100)
-    private String roles;
-
     @Column(name = "Id_PhongBan")
     private Integer idPhongBan;
 

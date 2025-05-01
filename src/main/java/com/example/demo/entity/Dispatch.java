@@ -1,4 +1,3 @@
-
 package com.example.demo.entity;
 
 import jakarta.persistence.*;
@@ -46,6 +45,11 @@ public class Dispatch {
 
     @Column(name = "Id_User", nullable = false)
     private Integer idUser;
+
+    // Thêm relationship với Category
+    @ManyToOne
+    @JoinColumn(name = "category_id", nullable = false)
+    private Category category;
 
     // Relationships
     @ManyToOne

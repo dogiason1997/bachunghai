@@ -102,32 +102,5 @@ public class SecurityConfig {
     );
 
     return mgr;
-}
-
-
- 
-
-    // @Bean
-    // public CommandLineRunner initData(UserDetailsService userDetailsService) {
-    //     return args -> {
-    //         JdbcUserDetailsManager manager = (JdbcUserDetailsManager) userDetailsService;
-    //         UserDetails user3 = User.withUsername("user3")
-    //                 .password(passwordEncoder().encode("password3"))
-    //                 .roles("DIRECTOR")
-    //                 .build();
-    //         UserDetails admin2 = User.withUsername("admin2")
-    //                 .password(passwordEncoder().encode("adminPass2"))
-    //                 .roles("ADMIN")
-    //                 .build();
-
-    //         JdbcUserDetailsManager userDetailsManager = new JdbcUserDetailsManager(dataSource);
-    //         userDetailsManager.createUser(user3);
-    //         userDetailsManager.createUser(admin2);
-    //     };
-    // }
-
-
-    
-
-    
+}  
 }

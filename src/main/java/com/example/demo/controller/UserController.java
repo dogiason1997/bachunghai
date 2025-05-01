@@ -31,6 +31,7 @@ public class UserController {
         List<CreateUserDTO> users = userService.getAllUsersWithAuthorities(pageable).getContent();
         return ResponseEntity.ok(users);
     }
+    
     @GetMapping("/users/{id}")
     public ResponseEntity<CreateUserDTO> getUserById(@PathVariable Integer id) {
         return userService.getUserById(id)

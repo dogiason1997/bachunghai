@@ -116,6 +116,7 @@ public class UserService {
 
     // Xóa nhân viên
 public void deleteUser(Integer id) {
+    // Tìm theo id -> Lấy danh sach quyen -> XOa tung quyen -> xóa useruser 
     Optional<Users> userOpt = userRepository.findById(id);
     if (!userOpt.isPresent()) {
         throw new IllegalArgumentException("User không tồn tại!");
@@ -133,6 +134,7 @@ public void deleteUser(Integer id) {
 
 // Cập nhật nhân viên
 public CreateUserDTO updateUser(Integer id, CreateUserDTO updateUserDTO) {
+    // tim theo id -> kiểm tra trung -> cập nhật -> kấy danh sách quyền cũ -> xóa quyền cũ -> thêm quyền mới -> lưu lại user
     Optional<Users> userOpt = userRepository.findById(id);
     if (!userOpt.isPresent()) {
         throw new IllegalArgumentException("User không tồn tại!");

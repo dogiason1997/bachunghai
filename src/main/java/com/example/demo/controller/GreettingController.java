@@ -15,18 +15,18 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.Utils.JwtUtils;
-import com.example.demo.entity.AuthToken;
-import com.example.demo.entity.Authorities;
 import com.example.demo.entity.Users;
 
 
 @RestController
+@CrossOrigin("*")
 public class GreettingController {
 
 

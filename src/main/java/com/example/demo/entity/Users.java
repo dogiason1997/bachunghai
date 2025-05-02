@@ -4,9 +4,10 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
-import java.util.ArrayList;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Data
 @Entity
@@ -29,75 +30,81 @@ public class Users {
     @Column(name = "Email", length = 200, unique = true)
     private String email;
 
-    @Column(name = "Position", length = 100)
-    private String position;
-
     @Column(name = "enabled" )
     private Boolean enabled;
 
     @Column(name = "Id_PhongBan")
     private Integer idPhongBan;
 
-    @Column(name = "Statuss", length = 20)
-    @Enumerated(EnumType.STRING)
-    private UserStatus statuss;
-
     @Column(name = "DateOfBirth")
     private LocalDate dateOfBirth;
+
+    @Column(name = "Id_Position")
+    private Long idPosition;
 
     // Relationships
     @ManyToOne
     @JoinColumn(name = "Id_PhongBan", insertable = false, updatable = false)
     private Department department;
 
-///
+    @ManyToOne
+    @JoinColumn(name = "Id_Position", insertable = false, updatable = false)
+    private Position position;
+
     @OneToMany(mappedBy = "user")
+    @JsonIgnore
     private List<Authorities> authorities;
 
     @OneToMany(mappedBy = "user")
+    @JsonIgnore
     private List<AuthToken> AuthToken;
-    ///
-
-
-
+    
     @OneToMany(mappedBy = "user")
+    @JsonIgnore
     private List<Article> articles;
 
     @OneToMany(mappedBy = "user")
+    @JsonIgnore
     private List<Notification> notifications;
 
     @OneToMany(mappedBy = "user")
+    @JsonIgnore
     private List<Plans> plans;
 
     @OneToMany(mappedBy = "user")
+    @JsonIgnore
     private List<Vehicle> vehicles;
 
     @OneToMany(mappedBy = "user")
+    @JsonIgnore
     private List<Document> documents;
 
     @OneToMany(mappedBy = "user")
+    @JsonIgnore
     private List<ContactFeedback> contactFeedbacks;
 
     @OneToMany(mappedBy = "user")
+    @JsonIgnore
     private List<WorkSchedule> workSchedules;
 
     @OneToMany(mappedBy = "user")
+    @JsonIgnore
     private List<MonitoringData> monitoringData;
 
     @OneToMany(mappedBy = "user")
+    @JsonIgnore
     private List<Violate> violates;
 
     @OneToMany(mappedBy = "user")
+    @JsonIgnore
     private List<DispatchArrived> dispatchArrived;
 
     @OneToMany(mappedBy = "user")
+    @JsonIgnore
     private List<Dispatch> dispatches;
 
     @OneToMany(mappedBy = "user")
+    @JsonIgnore
     private List<Operation> operations;
-
-    public enum UserStatus {
-        active, inactive
-    }
 
 }

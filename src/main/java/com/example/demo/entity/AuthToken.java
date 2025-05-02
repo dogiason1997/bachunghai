@@ -34,20 +34,4 @@ public class AuthToken {
     @OneToMany(mappedBy = "authToken", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Authorities> authorities;
 
-
-    
-    // @ElementCollection
-    // @CollectionTable(name = "AuthToken_Permissions", joinColumns = @JoinColumn(name = "Id_Token"))
-    // @Column(name = "Permission")
-    // private List<String> Permission;
-
-    // public AuthToken(String username, List<String> permissions, String jwtToken) {
-    //     this.username = username;
-    //     this.Permission = permissions;
-    //     this.jwtToken = jwtToken;
-    //     this.expirationTime = LocalDateTime.now().plusHours(1); // Token expires in 1 hour
-    // }
-
-//     public AuthToken() {
-//     }
 }

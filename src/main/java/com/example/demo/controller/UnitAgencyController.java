@@ -12,6 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/unit-agencies")
+@CrossOrigin("*")
 public class UnitAgencyController {
 
     private final UnitAgencyService unitAgencyService;

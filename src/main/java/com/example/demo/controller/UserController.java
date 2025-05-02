@@ -1,7 +1,6 @@
 package com.example.demo.controller;
 
 import com.example.demo.dto.CreateUserDTO;
-import com.example.demo.entity.Users;
 import com.example.demo.service.UserService;
 
 import org.springframework.data.domain.Pageable;
@@ -13,14 +12,15 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin("*")
 public class UserController {
 
     @Autowired
     private UserService userService;
 
     @PostMapping("/register")
-    public ResponseEntity<Users> createUser(@RequestBody CreateUserDTO createUserDTO) {
-        Users newUser = userService.createUser(createUserDTO);
+    public ResponseEntity<CreateUserDTO> createUser(@RequestBody CreateUserDTO createUserDTO) {
+        CreateUserDTO newUser = userService.createUser(createUserDTO);
         return ResponseEntity.ok(newUser);
     }
 
@@ -41,10 +41,10 @@ public class UserController {
 
     @DeleteMapping("/users/{id}")
     public ResponseEntity<?> deleteUser(@PathVariable Integer id) {
-        try{
+        try {
             userService.deleteUser(id);
             return ResponseEntity.ok().body("Xóa nhân viên thành công");
-        }catch(IllegalArgumentException ex){
+        } catch(IllegalArgumentException ex) {
             return ResponseEntity.notFound().build();
         }
     }
@@ -58,6 +58,4 @@ public class UserController {
             return ResponseEntity.notFound().build();
         }
     }
-
-
 }

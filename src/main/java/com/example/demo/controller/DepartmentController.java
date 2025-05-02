@@ -14,7 +14,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/departments")
+@RequestMapping("/departments")
+@CrossOrigin("*")
 public class DepartmentController {
 
     private final DepartmentService departmentService;
@@ -41,7 +42,7 @@ public class DepartmentController {
         return ResponseEntity.ok(departmentService.getDepartmentById(id));
     }
 
-    @PreAuthorize("hasAuthority('ADMIN')")
+    // @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping
     public ResponseEntity<DepartmentDTO> createDepartment(@Valid @RequestBody DepartmentDTO departmentDTO) {
         DepartmentDTO createdDepartment = departmentService.createDepartment(departmentDTO);

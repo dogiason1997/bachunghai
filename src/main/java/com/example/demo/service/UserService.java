@@ -9,8 +9,13 @@ import org.springframework.stereotype.Service;
 import com.example.demo.dto.CreateUserDTO;
 import com.example.demo.entity.Authorities;
 import com.example.demo.entity.Users;
+import com.example.demo.entity.Position;
+import com.example.demo.entity.Department;
+import com.example.demo.mapper.UserMapper;
 import com.example.demo.repository.AuthoritiesRepository;
 import com.example.demo.repository.UserRepository;
+import com.example.demo.repository.PositionRepository;
+import com.example.demo.repository.DepartmentRepository;
 
 import java.util.List;
 import java.util.Optional;
@@ -27,172 +32,146 @@ public class UserService {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
-    
-    public Users createUser(CreateUserDTO createUserDTO){
 
+    @Autowired
+    private PositionRepository positionRepository;
+
+    @Autowired
+    private DepartmentRepository departmentRepository;
+
+    @Autowired
+    private UserMapper userMapper;
+    
+    public CreateUserDTO createUser(CreateUserDTO createUserDTO) {
+        // Validate username and email
         if (userRepository.existsByUsername(createUserDTO.getUsername())) {
             throw new IllegalArgumentException("Username đã tồn tại trong hệ thống!");
         }
-        // Kiểm tra email đã tồn tại
         if (userRepository.existsByEmail(createUserDTO.getEmail())) {
             throw new IllegalArgumentException("Email đã tồn tại trong hệ thống!");
         }
 
-        Users user = new Users();
-        user.setUsername(createUserDTO.getUsername());
-        user.setPassword(passwordEncoder.encode(createUserDTO.getPassword()));        
-        user.setFullName(createUserDTO.getFullName());
-        user.setEmail(createUserDTO.getEmail());
-        user.setEnabled(createUserDTO.getEnabled() != null ? createUserDTO.getEnabled() : true);
+        // Find Position by name
+        Position position = positionRepository.findByPositionName(createUserDTO.getPositionName());
+        if (position == null) {
+            throw new IllegalArgumentException("Không tìm thấy vị trí với tên: " + createUserDTO.getPositionName());
+        }
+
+        // Find Department by name
+        Optional<Department> departmentOpt = departmentRepository.findByNameDepartment(createUserDTO.getNameDepartment());
+        if (!departmentOpt.isPresent()) {
+            throw new IllegalArgumentException("Không tìm thấy phòng ban với tên: " + createUserDTO.getNameDepartment());
+        }
+        Department department = departmentOpt.get();
+
+        // Convert DTO to entity using mapper
+        Users user = userMapper.toEntity(createUserDTO, position, department);
+        // Encode password
+        user.setPassword(passwordEncoder.encode(createUserDTO.getPassword()));
         
+        // Save user
         Users savedUser = userRepository.save(user);
 
-
-
+        // Handle authorities
         List<String> authorities = createUserDTO.getAuthorities();
-       if (authorities == null || authorities.isEmpty()) {
-        authorities = List.of("MEMBER"); // hoặc Collections.singletonList("MEMBER")
-       }
-       for (String auth : authorities) {
-       Authorities authority = new Authorities();
-       authority.setAuthority(auth);
-       authority.setUser(savedUser);
-       authoritiesRepository.save(authority);
-}
+        if (authorities == null || authorities.isEmpty()) {
+            authorities = List.of("MEMBER");
+        }
+        for (String auth : authorities) {
+            Authorities authority = new Authorities();
+            authority.setAuthority(auth);
+            authority.setUser(savedUser);
+            authoritiesRepository.save(authority);
+        }
 
-        // Authorities authority = new Authorities();
-        // authority.setAuthority(createUserDTO.getAuthority() != null ? createUserDTO.getAuthority() : "MEMBER");
-        // authority.setUser(savedUser);
-        // authoritiesRepository.save(authority);
-
-        return savedUser;
-    
-    
+        // Convert back to DTO and return
+        return userMapper.toDto(savedUser);
     }
-
-    // public Page<CreateUserDTO> getAllUsersWithAuthorities(Pageable pageable) {
-    //     return userRepository.findAllUsersWithAuthorities(pageable);
-    // }
 
     public Page<CreateUserDTO> getAllUsersWithAuthorities(Pageable pageable) {
         Page<Users> usersPage = userRepository.findAllUsersWithAuthorities(pageable);
-        return usersPage.map(user -> {
-            List<String> authorities = user.getAuthorities()
-                .stream()
-                .map(Authorities::getAuthority)
-                .collect(Collectors.toList());
-            return new CreateUserDTO(
-                user.getUsername(),
-                user.getPassword(),
-                user.getFullName(),
-                user.getEmail(),
-                user.getEnabled(),
-                authorities
-            );
-        });
+        return usersPage.map(userMapper::toDto);
     }
 
     public Optional<CreateUserDTO> getUserById(Integer id) {
         Optional<Users> userOpt = userRepository.findUserById(id);
-        if (userOpt.isPresent()) {
-            Users user = userOpt.get();
-            List<String> authorities = user.getAuthorities()
-                                          .stream()
-                                          .map(Authorities::getAuthority)
-                                          .collect(Collectors.toList());
-            CreateUserDTO dto = new CreateUserDTO(
-                user.getUsername(),
-                user.getPassword(),
-                user.getFullName(),
-                user.getEmail(),
-                user.getEnabled(),
-                authorities
-            );
-            return Optional.of(dto);
+        return userOpt.map(userMapper::toDto);
+    }
+
+    public void deleteUser(Integer id) {
+        Optional<Users> userOpt = userRepository.findById(id);
+        if (!userOpt.isPresent()) {
+            throw new IllegalArgumentException("User không tồn tại!");
         }
-        return Optional.empty();
+        Users user = userOpt.get();
+        List<Authorities> authorities = user.getAuthorities();
+        if (authorities != null) {
+            for (Authorities auth : authorities) {
+                authoritiesRepository.delete(auth);
+            }
+        }
+        userRepository.deleteById(id);
     }
 
+    public CreateUserDTO updateUser(Integer id, CreateUserDTO updateUserDTO) {
+        Optional<Users> userOpt = userRepository.findById(id);
+        if (!userOpt.isPresent()) {
+            throw new IllegalArgumentException("User không tồn tại!");
+        }
+        Users existingUser = userOpt.get();
 
-    // Xóa nhân viên
-public void deleteUser(Integer id) {
-    // Tìm theo id -> Lấy danh sach quyen -> XOa tung quyen -> xóa useruser 
-    Optional<Users> userOpt = userRepository.findById(id);
-    if (!userOpt.isPresent()) {
-        throw new IllegalArgumentException("User không tồn tại!");
-    }
-    // Xóa quyền trước (nếu có ràng buộc foreign key)
-    Users user = userOpt.get();
-    List<Authorities> authorities = user.getAuthorities();
-    if (authorities != null) {
-        for (Authorities auth : authorities) {
+        // Validate username and email
+        if (!existingUser.getUsername().equals(updateUserDTO.getUsername()) 
+            && userRepository.existsByUsername(updateUserDTO.getUsername())) {
+            throw new IllegalArgumentException("Username đã tồn tại trong hệ thống!");
+        }
+        if (!existingUser.getEmail().equals(updateUserDTO.getEmail()) 
+            && userRepository.existsByEmail(updateUserDTO.getEmail())) {
+            throw new IllegalArgumentException("Email đã tồn tại trong hệ thống!");
+        }
+
+        // Find Position by name
+        Position position = positionRepository.findByPositionName(updateUserDTO.getPositionName());
+        if (position == null) {
+            throw new IllegalArgumentException("Không tìm thấy vị trí với tên: " + updateUserDTO.getPositionName());
+        }
+
+        // Find Department by name
+        Optional<Department> departmentOpt = departmentRepository.findByNameDepartment(updateUserDTO.getNameDepartment());
+        if (!departmentOpt.isPresent()) {
+            throw new IllegalArgumentException("Không tìm thấy phòng ban với tên: " + updateUserDTO.getNameDepartment());
+        }
+        Department department = departmentOpt.get();
+
+        // Update user fields
+        Users userToUpdate = userMapper.toEntity(updateUserDTO, position, department);
+        userToUpdate.setIdUser(existingUser.getIdUser());
+        if (updateUserDTO.getPassword() != null && !updateUserDTO.getPassword().isEmpty()) {
+            userToUpdate.setPassword(passwordEncoder.encode(updateUserDTO.getPassword()));
+        } else {
+            userToUpdate.setPassword(existingUser.getPassword());
+        }
+
+        // Update authorities
+        List<Authorities> oldAuthorities = authoritiesRepository.findByUser(existingUser);
+        for (Authorities auth : oldAuthorities) {
             authoritiesRepository.delete(auth);
         }
-    }
-    userRepository.deleteById(id);
-}
 
-// Cập nhật nhân viên
-public CreateUserDTO updateUser(Integer id, CreateUserDTO updateUserDTO) {
-    // tim theo id -> kiểm tra trung -> cập nhật -> kấy danh sách quyền cũ -> xóa quyền cũ -> thêm quyền mới -> lưu lại user
-    Optional<Users> userOpt = userRepository.findById(id);
-    if (!userOpt.isPresent()) {
-        throw new IllegalArgumentException("User không tồn tại!");
-    }
-    Users user = userOpt.get();
+        Users savedUser = userRepository.save(userToUpdate);
 
-    // Kiểm tra nếu username/email mới đã tồn tại ở user khác
-    if (!user.getUsername().equals(updateUserDTO.getUsername()) && userRepository.existsByUsername(updateUserDTO.getUsername())) {
-        throw new IllegalArgumentException("Username đã tồn tại trong hệ thống!");
-    }
-    if (!user.getEmail().equals(updateUserDTO.getEmail()) && userRepository.existsByEmail(updateUserDTO.getEmail())) {
-        throw new IllegalArgumentException("Email đã tồn tại trong hệ thống!");
-    }
-
-    user.setUsername(updateUserDTO.getUsername());
-    if (updateUserDTO.getPassword() != null && !updateUserDTO.getPassword().isEmpty()) {
-        user.setPassword(passwordEncoder.encode(updateUserDTO.getPassword()));
-    }
-    user.setFullName(updateUserDTO.getFullName());
-    user.setEmail(updateUserDTO.getEmail());
-    user.setEnabled(updateUserDTO.getEnabled() != null ? updateUserDTO.getEnabled() : true);
-
-    // 1. Xóa hết các quyền cũ của user
-    List<Authorities> oldAuthorities = authoritiesRepository.findByUser(user);
-for (Authorities auth : oldAuthorities) {
-    if (authoritiesRepository.existsById(auth.getId())) {
-        authoritiesRepository.delete(auth);
-    }
-}
-    // 2. Thêm các quyền mới
-    List<String> newAuthorities = updateUserDTO.getAuthorities();
-    if (newAuthorities == null || newAuthorities.isEmpty()) {
-        newAuthorities = java.util.Collections.singletonList("MEMBER");
-    }
-    for (String auth : newAuthorities) {
-        Authorities authority = new Authorities();
-        authority.setAuthority(auth);
-        authority.setUser(user);
-        authoritiesRepository.save(authority);
-    }
-
-    Users savedUser = userRepository.save(user);
-
-    // Trả về DTO mới
-    List<String> authoritiesList = new java.util.ArrayList<String>();
-    List<Authorities> authoritiesEntities = savedUser.getAuthorities();
-    if (authoritiesEntities != null) {
-        for (Authorities auth : authoritiesEntities) {
-            authoritiesList.add(auth.getAuthority());
+        List<String> newAuthorities = updateUserDTO.getAuthorities();
+        if (newAuthorities == null || newAuthorities.isEmpty()) {
+            newAuthorities = java.util.Collections.singletonList("MEMBER");
         }
+        for (String auth : newAuthorities) {
+            Authorities authority = new Authorities();
+            authority.setAuthority(auth);
+            authority.setUser(savedUser);
+            authoritiesRepository.save(authority);
+        }
+
+        // Convert to DTO and return
+        return userMapper.toDto(savedUser);
     }
-    return new CreateUserDTO(
-        savedUser.getUsername(),
-        savedUser.getPassword(),
-        savedUser.getFullName(),
-        savedUser.getEmail(),
-        savedUser.getEnabled(),
-        authoritiesList
-    );
-}
 }

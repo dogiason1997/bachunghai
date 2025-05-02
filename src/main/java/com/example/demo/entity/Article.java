@@ -21,11 +21,6 @@ public class Article {
     @Column(name = "Title", nullable = false, length = 200,unique = true)
     private String title;
 
-    @ManyToOne
-    // @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "category_id", nullable = false)
-    @JsonBackReference
-    private Category category;
     
     @Column(name = "CreationDate", nullable = false)
     private LocalDateTime creationDate;
@@ -44,7 +39,11 @@ public class Article {
     @Column(name = "Content", columnDefinition = "TEXT")
     private String content;
 
-    // Relationships
+    @ManyToOne
+    @JoinColumn(name = "category_id", nullable = false)
+    @JsonBackReference
+    private Category category;
+
     @ManyToOne
     @JoinColumn(name = "Id_User", insertable = false, updatable = false)
     @JsonIgnore

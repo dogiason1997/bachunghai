@@ -15,6 +15,7 @@ import com.example.demo.service.ArticleService;
 
 @RestController
 @RequestMapping("/articles")
+@CrossOrigin("*")
 public class ArticleController {
     @Autowired
     private ArticleService articleService;

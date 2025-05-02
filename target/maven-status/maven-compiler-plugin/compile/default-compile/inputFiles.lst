@@ -1,5 +1,6 @@
 D:\BacHungHai\src\main\java\com\example\demo\dto\UnitAgencyDTO.java
 D:\BacHungHai\src\main\java\com\example\demo\entity\Plans.java
+D:\BacHungHai\src\main\java\com\example\demo\entity\Position.java
 D:\BacHungHai\src\main\java\com\example\demo\exception\GlobalExceptionHandler.java
 D:\BacHungHai\src\main\java\com\example\demo\DemoApplication.java
 D:\BacHungHai\src\main\java\com\example\demo\dto\DepartmentDTO.java
@@ -18,6 +19,7 @@ D:\BacHungHai\src\main\java\com\example\demo\entity\Category.java
 D:\BacHungHai\src\main\java\com\example\demo\entity\AuthToken.java
 D:\BacHungHai\src\main\java\com\example\demo\entity\Dispatch.java
 D:\BacHungHai\src\main\java\com\example\demo\service\ArticleService.java
+D:\BacHungHai\src\main\java\com\example\demo\mapper\UserMapper.java
 D:\BacHungHai\src\main\java\com\example\demo\dto\CategoryDTO.java
 D:\BacHungHai\src\main\java\com\example\demo\config\SecurityConfig.java
 D:\BacHungHai\src\main\java\com\example\demo\repository\CategoryRepository.java
@@ -27,6 +29,7 @@ D:\BacHungHai\src\main\java\com\example\demo\entity\Users.java
 D:\BacHungHai\src\main\java\com\example\demo\entity\Violate.java
 D:\BacHungHai\src\main\java\com\example\demo\controller\CategoryController.java
 D:\BacHungHai\src\main\java\com\example\demo\config\SwaggerConfig.java
+D:\BacHungHai\src\main\java\com\example\demo\service\PositionService.java
 D:\BacHungHai\src\main\java\com\example\demo\entity\WorkSchedule.java
 D:\BacHungHai\src\main\java\com\example\demo\repository\ArticleRepository.java
 D:\BacHungHai\src\main\java\com\example\demo\repository\UnitAgencyRepository.java
@@ -46,6 +49,8 @@ D:\BacHungHai\src\main\java\com\example\demo\repository\UserRepository.java
 D:\BacHungHai\src\main\java\com\example\demo\entity\DispatchArrived.java
 D:\BacHungHai\src\main\java\com\example\demo\service\DepartmentService.java
 D:\BacHungHai\src\main\java\com\example\demo\service\UnitAgencyService.java
+D:\BacHungHai\src\main\java\com\example\demo\repository\PositionRepository.java
 D:\BacHungHai\src\main\java\com\example\demo\config\WebConfig.java
 D:\BacHungHai\src\main\java\com\example\demo\entity\Notification.java
+D:\BacHungHai\src\main\java\com\example\demo\controller\PositionController.java
 D:\BacHungHai\src\main\java\com\example\demo\filter\AuthTokenFilter.java

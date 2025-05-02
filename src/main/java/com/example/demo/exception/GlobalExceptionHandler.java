@@ -30,18 +30,20 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(DataIntegrityViolationException.class)
-    public ResponseEntity<String> handleDataIntegrity(DataIntegrityViolationException ex) {
-        String causeMsg = ex.getMostSpecificCause().getMessage();
-        if (causeMsg != null && causeMsg.contains("FK_unit_department")) {
-            return ResponseEntity
-                .status(HttpStatus.BAD_REQUEST)
-                .body("Không thể xóa phòng ban này vì vẫn còn đơn vị tham chiếu tới.");
+    public ResponseEntity<String> handleDataIntegrityViolationException(DataIntegrityViolationException ex) {
+        String message = ex.getMostSpecificCause().getMessage();
+
+        if (message.contains("position_code")) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("Mã vị trí đã tồn tại.");
+        } else if (message.contains("position_name")) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("Tên vị trí đã tồn tại.");
+        } else if (message.contains("FK_unit_department")) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Không thể xóa phòng ban này vì vẫn còn đơn vị tham chiếu tới.");
         }
-        return ResponseEntity
-            .status(HttpStatus.BAD_REQUEST)
-            .body("Dữ liệu không hợp lệ.");
+
+        return ResponseEntity.status(HttpStatus.CONFLICT).body("Dữ liệu xóa vi phạm rằng buộc không hợp lệ.");
     }
-    
+
     @ExceptionHandler(MaxUploadSizeExceededException.class)
     public ResponseEntity<String> handleMaxSizeException(MaxUploadSizeExceededException exc) {
         return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED)

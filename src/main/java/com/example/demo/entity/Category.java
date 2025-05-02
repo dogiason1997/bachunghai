@@ -31,4 +31,8 @@ public class Category {
     @OneToMany(mappedBy = "category")
     @JsonIgnore
     private List<DispatchArrived> dispatchArriveds;
+
+    @OneToMany(mappedBy = "category")
+    @JsonIgnore
+    private List<Notification> notifications;
 }

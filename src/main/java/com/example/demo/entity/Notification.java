@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 @Data
 @Entity
 @Table(name = "Notification")
@@ -18,16 +19,12 @@ public class Notification {
 
     @Column(name = "Id_User", nullable = false)
     private Integer idUser;
-
-    @Column(name = "Category", nullable = false, length = 300)
-    @Enumerated(EnumType.STRING)
-    private NotificationCategory category;
-
+    
     @Column(name = "Content", length = 100)
     private String content;
 
-    @Column(name = "Statuss", nullable = false, length = 20)
-    @Enumerated(EnumType.STRING)
+    @Column(name = "Statuss", nullable = false)
+    @Convert(converter = NotificationStatusConverter.class)
     private NotificationStatus statuss;
 
     @Column(name = "CreationDate", nullable = false)
@@ -36,20 +33,56 @@ public class Notification {
     @Column(name = "Tags", length = 200)
     private String tags;
 
-    @Column(name = "Image")
-    @Lob
-    private byte[] image;
-
-    // Relationships
     @ManyToOne
     @JoinColumn(name = "Id_User", insertable = false, updatable = false)
+    @JsonIgnore
     private Users user;
 
-    public enum NotificationCategory {
-        Thông_báo_nội_bộ, quy_định, sự_kiện
-    }
+    @ManyToOne
+    @JoinColumn(name = "category_id", nullable = false)
+    @JsonIgnore
+    private Category category;
+
+    @OneToMany(mappedBy = "notification", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
+    private java.util.List<FilesSave> files;
 
     public enum NotificationStatus {
-        Bản_nháp, Xuất_bản
+        NHAP("Nháp"),
+        DA_XUAT_BAN("Đã xuất bản");
+        // DA_LUU_TRU("Đã lưu trữ"), 
+        // DA_HUY("Đã hủy");         
+    
+        private final String value;
+    
+        NotificationStatus(String value) {
+            this.value = value;
+        }
+    
+        public String getValue() {
+            return value;
+        }
     }
-} 
+    
+    @Converter
+    public static class NotificationStatusConverter implements AttributeConverter<NotificationStatus, String> {
+        @Override
+        public String convertToDatabaseColumn(NotificationStatus attribute) {
+            return attribute == null ? null : attribute.getValue();
+        }
+    
+        @Override
+        public NotificationStatus convertToEntityAttribute(String dbData) {
+            if (dbData == null) {
+                return null;
+            }
+            
+            for (NotificationStatus status : NotificationStatus.values()) {
+                if (status.getValue().equals(dbData)) {
+                    return status;
+                }
+            }
+            throw new IllegalArgumentException("Unknown database value: " + dbData);
+        }
+    }
+}     

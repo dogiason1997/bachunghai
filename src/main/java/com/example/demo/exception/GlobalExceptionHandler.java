@@ -41,7 +41,7 @@ public class GlobalExceptionHandler {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Không thể xóa phòng ban này vì vẫn còn đơn vị tham chiếu tới.");
         }
 
-        return ResponseEntity.status(HttpStatus.CONFLICT).body("Dữ liệu xóa vi phạm rằng buộc không hợp lệ.");
+        return ResponseEntity.status(HttpStatus.CONFLICT).body("Dữ liệu vi phạm rằng buộc không hợp lệ.");
     }
 
     @ExceptionHandler(MaxUploadSizeExceededException.class)

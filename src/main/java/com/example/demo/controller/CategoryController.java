@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.dto.CategoryDTO;
 import com.example.demo.service.CategoryService;
 
-// CategoryController.java
+
 @RestController
 @CrossOrigin("*")
 @RequestMapping("/categories")

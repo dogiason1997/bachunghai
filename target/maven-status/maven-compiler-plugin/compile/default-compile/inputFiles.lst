@@ -15,8 +15,10 @@ D:\BacHungHai\src\main\java\com\example\demo\entity\Article.java
 D:\BacHungHai\src\main\java\com\example\demo\dto\ArticleDTO.java
 D:\BacHungHai\src\main\java\com\example\demo\entity\Department.java
 D:\BacHungHai\src\main\java\com\example\demo\repository\AuthoritiesRepository.java
+D:\BacHungHai\src\main\java\com\example\demo\controller\NotificationController.java
 D:\BacHungHai\src\main\java\com\example\demo\entity\Category.java
 D:\BacHungHai\src\main\java\com\example\demo\entity\AuthToken.java
+D:\BacHungHai\src\main\java\com\example\demo\service\NotificationService.java
 D:\BacHungHai\src\main\java\com\example\demo\entity\Dispatch.java
 D:\BacHungHai\src\main\java\com\example\demo\service\ArticleService.java
 D:\BacHungHai\src\main\java\com\example\demo\mapper\UserMapper.java
@@ -30,10 +32,13 @@ D:\BacHungHai\src\main\java\com\example\demo\entity\Violate.java
 D:\BacHungHai\src\main\java\com\example\demo\controller\CategoryController.java
 D:\BacHungHai\src\main\java\com\example\demo\config\SwaggerConfig.java
 D:\BacHungHai\src\main\java\com\example\demo\service\PositionService.java
+D:\BacHungHai\src\main\java\com\example\demo\repository\NotificationRepository.java
 D:\BacHungHai\src\main\java\com\example\demo\entity\WorkSchedule.java
 D:\BacHungHai\src\main\java\com\example\demo\repository\ArticleRepository.java
 D:\BacHungHai\src\main\java\com\example\demo\repository\UnitAgencyRepository.java
 D:\BacHungHai\src\main\java\com\example\demo\dto\CreateUserDTO.java
+D:\BacHungHai\src\main\java\com\example\demo\dto\NotificationDTO.java
+D:\BacHungHai\src\main\java\com\example\demo\entity\FilesSave.java
 D:\BacHungHai\src\main\java\com\example\demo\mapper\DepartmentMapper.java
 D:\BacHungHai\src\main\java\com\example\demo\repository\DepartmentRepository.java
 D:\BacHungHai\src\main\java\com\example\demo\entity\Operation.java
@@ -43,6 +48,7 @@ D:\BacHungHai\src\main\java\com\example\demo\entity\CanalRoute.java
 D:\BacHungHai\src\main\java\com\example\demo\entity\Document.java
 D:\BacHungHai\src\main\java\com\example\demo\entity\Authorities.java
 D:\BacHungHai\src\main\java\com\example\demo\entity\ContactFeedback.java
+D:\BacHungHai\src\main\java\com\example\demo\repository\FilesSaveRepository.java
 D:\BacHungHai\src\main\java\com\example\demo\Auth\AuthEntryPointJwt.java
 D:\BacHungHai\src\main\java\com\example\demo\controller\ArticleController.java
 D:\BacHungHai\src\main\java\com\example\demo\repository\UserRepository.java

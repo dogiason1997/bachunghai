@@ -40,7 +40,7 @@ public class Users {
     private LocalDate dateOfBirth;
 
     @Column(name = "Id_Position")
-    private Long idPosition;
+    private Integer idPosition;
 
     // Relationships
     @ManyToOne

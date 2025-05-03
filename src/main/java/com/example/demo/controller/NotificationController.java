@@ -45,4 +45,34 @@ public class NotificationController {
     public ResponseEntity<Notification> getNotificationById(@PathVariable Integer id) {
         return ResponseEntity.ok(notificationService.getNotificationById(id));
     }
+
+  
+
+    // Lấy danh sách thông báo theo tên phòng ban
+    // @GetMapping("/department/{nameDepartment}")
+    // public List<Notification> getNotificationsByDepartment(@PathVariable String nameDepartment) {
+    //     return notificationService.getNotificationsByDepartmentName(nameDepartment);
+    // }
+
+    // // Lấy danh sách thông báo theo tên chức vụ
+    // @GetMapping("/position/{positionName}")
+    // public List<Notification> getNotificationsByPosition(@PathVariable String positionName) {
+    //     return notificationService.getNotificationsByPositionName(positionName);
+    // }
+    
+    @GetMapping("/department/{departmentId}/position/{positionId}")
+    public List<Notification> getByDepartmentAndPosition(@PathVariable Integer departmentId, @PathVariable Integer positionId) {
+        return notificationService.getNotificationsByDepartmentAndPosition(departmentId, positionId);
+    }
+
+    @GetMapping("/department/{departmentId}")
+    public List<Notification> getByDepartment(@PathVariable Integer departmentId) {
+        return notificationService.getNotificationsByDepartment(departmentId);
+    }
+
+    @GetMapping("/position/{positionId}")
+    public List<Notification> getByPosition(@PathVariable Integer positionId) {
+        return notificationService.getNotificationsByPosition(positionId);
+    }
+
 }

@@ -3,6 +3,8 @@ package com.example.demo.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 @Data
@@ -47,6 +49,15 @@ public class Notification {
     @JsonIgnore
     private java.util.List<FilesSave> files;
 
+    @OneToMany(mappedBy = "notification", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
+    private List<NotificationDepartment> notificationDepartments = new ArrayList<>();
+ 
+    @OneToMany(mappedBy = "notification", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
+    private List<NotificationPosition> notificationPositions = new ArrayList<>();
+
+
     public enum NotificationStatus {
         NHAP("Nháp"),
         DA_XUAT_BAN("Đã xuất bản");
@@ -61,6 +72,15 @@ public class Notification {
     
         public String getValue() {
             return value;
+        }
+
+        public static NotificationStatus fromValue(String value) {
+            for (NotificationStatus status : NotificationStatus.values()) {
+                if (status.getValue().equals(value)) {
+                    return status;
+                }
+            }
+            throw new IllegalArgumentException("Unknown value: " + value);
         }
     }
     

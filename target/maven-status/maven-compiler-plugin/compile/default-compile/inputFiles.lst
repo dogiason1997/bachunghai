@@ -17,11 +17,14 @@ D:\BacHungHai\src\main\java\com\example\demo\entity\Department.java
 D:\BacHungHai\src\main\java\com\example\demo\repository\AuthoritiesRepository.java
 D:\BacHungHai\src\main\java\com\example\demo\controller\NotificationController.java
 D:\BacHungHai\src\main\java\com\example\demo\entity\Category.java
+D:\BacHungHai\src\main\java\com\example\demo\repository\NotificationDepartmentRepository.java
 D:\BacHungHai\src\main\java\com\example\demo\entity\AuthToken.java
+D:\BacHungHai\src\main\java\com\example\demo\entity\NotificationDepartment.java
 D:\BacHungHai\src\main\java\com\example\demo\service\NotificationService.java
 D:\BacHungHai\src\main\java\com\example\demo\entity\Dispatch.java
 D:\BacHungHai\src\main\java\com\example\demo\service\ArticleService.java
 D:\BacHungHai\src\main\java\com\example\demo\mapper\UserMapper.java
+D:\BacHungHai\src\main\java\com\example\demo\repository\NotificationPositionRepository.java
 D:\BacHungHai\src\main\java\com\example\demo\dto\CategoryDTO.java
 D:\BacHungHai\src\main\java\com\example\demo\config\SecurityConfig.java
 D:\BacHungHai\src\main\java\com\example\demo\repository\CategoryRepository.java
@@ -44,6 +47,7 @@ D:\BacHungHai\src\main\java\com\example\demo\repository\DepartmentRepository.jav
 D:\BacHungHai\src\main\java\com\example\demo\entity\Operation.java
 D:\BacHungHai\src\main\java\com\example\demo\Utils\JwtUtils.java
 D:\BacHungHai\src\main\java\com\example\demo\controller\UserController.java
+D:\BacHungHai\src\main\java\com\example\demo\entity\NotificationPosition.java
 D:\BacHungHai\src\main\java\com\example\demo\entity\CanalRoute.java
 D:\BacHungHai\src\main\java\com\example\demo\entity\Document.java
 D:\BacHungHai\src\main\java\com\example\demo\entity\Authorities.java

@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface PositionRepository extends JpaRepository<Position, Long> {
+public interface PositionRepository extends JpaRepository<Position, Integer> {
     Optional<Position> findByPositionCode(String positionCode);
     
     @Query("SELECT p FROM Position p JOIN p.users u WHERE u.fullName LIKE %:fullName%")

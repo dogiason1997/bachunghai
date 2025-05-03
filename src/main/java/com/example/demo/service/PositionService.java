@@ -25,7 +25,7 @@ public class PositionService {
     }
 
     // Update position
-    public Position updatePosition(Long id, Position position) {
+    public Position updatePosition(Integer id, Position position) {
         if (positionRepository.existsById(id)) {
             Position existingPositionByCode = positionRepository.findByPositionCode(position.getPositionCode()).orElse(null);
             if (existingPositionByCode != null && !existingPositionByCode.getId().equals(id)) {
@@ -43,12 +43,12 @@ public class PositionService {
     }
 
     // Delete position
-    public void deletePosition(Long id) {
+    public void deletePosition(Integer id) {
         positionRepository.deleteById(id);
     }
 
     // Get position by ID
-    public Optional<Position> getPositionById(Long id) {
+    public Optional<Position> getPositionById(Integer id) {
         return positionRepository.findById(id);
     }
 

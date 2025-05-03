@@ -62,7 +62,6 @@ public class ArticleService {
         article.setImages(imageBytes);
         article.setCreationDate(LocalDateTime.now());
         article.setIdUser(userId);
-        
         // Set category by name
         Category category = categoryService.getCategoryByName(articleDTO.getCategoryName());
         article.setCategory(category);

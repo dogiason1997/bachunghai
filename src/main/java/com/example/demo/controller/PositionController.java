@@ -23,7 +23,7 @@ public class PositionController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Position> updatePosition(@PathVariable Long id, @RequestBody Position position) {
+    public ResponseEntity<Position> updatePosition(@PathVariable Integer id, @RequestBody Position position) {
         Position updatedPosition = positionService.updatePosition(id, position);
         if (updatedPosition != null) {
             return ResponseEntity.ok(updatedPosition);
@@ -33,13 +33,13 @@ public class PositionController {
 
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deletePosition(@PathVariable Long id) {
+    public ResponseEntity<String> deletePosition(@PathVariable Integer id) {
         positionService.deletePosition(id);
         return ResponseEntity.ok().body("Xóa vị trí thành công");
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Position> getPositionById(@PathVariable Long id) {
+    public ResponseEntity<Position> getPositionById(@PathVariable Integer id) {
         return positionService.getPositionById(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());

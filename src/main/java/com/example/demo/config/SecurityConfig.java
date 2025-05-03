@@ -61,7 +61,7 @@ public class SecurityConfig {
         http.authorizeHttpRequests(authorizeRequests ->
                 authorizeRequests
                 .requestMatchers("/swagger-ui.html", "/v3/api-docs/**", "/swagger-ui/**").permitAll() // Cho phép truy cập không cần xác thực
-                        .requestMatchers("/signin","/register").permitAll()
+                        .requestMatchers("/signin","/register","/positions","/departments").permitAll()
                         .anyRequest().authenticated());
         http.sessionManagement(
                 session ->

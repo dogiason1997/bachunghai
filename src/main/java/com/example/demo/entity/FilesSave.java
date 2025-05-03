@@ -26,7 +26,7 @@ public class FilesSave {
     private LocalDateTime uploadDate;
 
     @ManyToOne
-    @JoinColumn(name = "Id_Notification", nullable = false)
+    @JoinColumn(name = "Id_Notification")
     @JsonIgnore
     private Notification notification;
 

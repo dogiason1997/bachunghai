@@ -35,13 +35,13 @@ public class NotificationService {
     private FilesSaveRepository filesSaveRepository;
 
     @Autowired
-private NotificationDepartmentRepository notificationDepartmentRepository;
-@Autowired
-private NotificationPositionRepository notificationPositionRepository;
-@Autowired
-private DepartmentRepository departmentRepository;
-@Autowired
-private PositionRepository positionRepository;
+    private NotificationDepartmentRepository notificationDepartmentRepository;
+    @Autowired
+    private NotificationPositionRepository notificationPositionRepository;
+    @Autowired
+    private DepartmentRepository departmentRepository;
+    @Autowired
+    private PositionRepository positionRepository;
 
     public Notification createNotification(NotificationDTO notificationDTO, Integer userId) throws IOException {
         Notification notification = new Notification();
@@ -53,7 +53,7 @@ private PositionRepository positionRepository;
                 .orElseThrow(() -> new RuntimeException("Không có danh mục"));
         notification.setCategory(category);
         notification.setCreationDate(java.time.LocalDateTime.now());
-        notification.setTags("Quan trọng");
+        notification.setTags("");
         notification = notificationRepository.save(notification);
 
         List<FilesSave> files = new ArrayList<>();
@@ -114,7 +114,6 @@ private PositionRepository positionRepository;
     public List<Notification> getNotificationsByDepartmentAndPosition(Integer departmentId, Integer positionId) {
         List<Notification> byDept = getNotificationsByDepartment(departmentId);
         List<Notification> byPos = getNotificationsByPosition(positionId);
-        // Lấy giao nhau
         return byDept.stream().filter(byPos::contains).collect(Collectors.toList());
     }
 
@@ -171,4 +170,20 @@ private PositionRepository positionRepository;
         return notificationRepository.findByPositionName(positionName);
     }
 
+    public Notification updateNotificationStatus(Integer id, String newStatus) {
+        Notification notification = notificationRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Notification not found"));
+
+        // Kiểm tra trạng thái mới có hợp lệ không
+        Notification.NotificationStatus status;
+        try {
+            status = Notification.NotificationStatus.fromValue(newStatus);
+        } catch (IllegalArgumentException e) {
+            throw new RuntimeException("Invalid status: " + newStatus);
+        }
+
+        // Cập nhật trạng thái
+        notification.setStatuss(status);
+        return notificationRepository.save(notification);
+    }
 }

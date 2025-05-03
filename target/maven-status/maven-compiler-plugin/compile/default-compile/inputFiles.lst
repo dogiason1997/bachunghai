@@ -2,6 +2,7 @@ D:\BacHungHai\src\main\java\com\example\demo\dto\UnitAgencyDTO.java
 D:\BacHungHai\src\main\java\com\example\demo\entity\Plans.java
 D:\BacHungHai\src\main\java\com\example\demo\entity\Position.java
 D:\BacHungHai\src\main\java\com\example\demo\exception\GlobalExceptionHandler.java
+D:\BacHungHai\src\main\java\com\example\demo\service\FileService.java
 D:\BacHungHai\src\main\java\com\example\demo\DemoApplication.java
 D:\BacHungHai\src\main\java\com\example\demo\dto\DepartmentDTO.java
 D:\BacHungHai\src\main\java\com\example\demo\mapper\UnitAgencyMapper.java
@@ -25,6 +26,7 @@ D:\BacHungHai\src\main\java\com\example\demo\entity\Dispatch.java
 D:\BacHungHai\src\main\java\com\example\demo\service\ArticleService.java
 D:\BacHungHai\src\main\java\com\example\demo\mapper\UserMapper.java
 D:\BacHungHai\src\main\java\com\example\demo\repository\NotificationPositionRepository.java
+D:\BacHungHai\src\main\java\com\example\demo\controller\FileController.java
 D:\BacHungHai\src\main\java\com\example\demo\dto\CategoryDTO.java
 D:\BacHungHai\src\main\java\com\example\demo\config\SecurityConfig.java
 D:\BacHungHai\src\main\java\com\example\demo\repository\CategoryRepository.java

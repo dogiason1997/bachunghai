@@ -30,6 +30,12 @@ public class NotificationController {
         return ResponseEntity.ok(notificationService.updateNotification(id, notificationDTO, userId));
     }
 
+    @PutMapping("/{id}/status")
+    public ResponseEntity<Notification> updateNotificationStatus(@PathVariable Integer id, @RequestParam String newStatus) {
+        Notification updatedNotification = notificationService.updateNotificationStatus(id, newStatus);
+        return ResponseEntity.ok(updatedNotification);
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteNotification(@PathVariable Integer id) {
         notificationService.deleteNotification(id);

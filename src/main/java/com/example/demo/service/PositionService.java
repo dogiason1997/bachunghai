@@ -14,13 +14,17 @@ public class PositionService {
 
     // Create new position
     public Position createPosition(Position position) {
-        if (positionRepository.findByPositionCode(position.getPositionCode()) != null) {
-            throw new IllegalArgumentException("Mã phòng ban đã tồn tại.");
+        // Kiểm tra xem position_code đã tồn tại chưa
+        if (positionRepository.existsByPositionCode(position.getPositionCode())) {
+            throw new IllegalArgumentException("Mã vị trí đã tồn tại.");
         }
 
-        if (positionRepository.findByPositionName(position.getPositionName()) != null) {
+        // Kiểm tra xem position_name đã tồn tại chưa
+        if (positionRepository.existsByPositionName(position.getPositionName())) {
             throw new IllegalArgumentException("Tên vị trí đã tồn tại.");
         }
+
+        // Lưu vị trí mới
         return positionRepository.save(position);
     }
 

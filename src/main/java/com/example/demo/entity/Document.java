@@ -2,7 +2,12 @@ package com.example.demo.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Data
 @Entity
@@ -16,14 +21,6 @@ public class Document {
     @Column(name = "Id_User", nullable = false)
     private Integer idUser;
 
-    @Column(name = "Text_Type", nullable = false, length = 100)
-    @Enumerated(EnumType.STRING)
-    private TextType textType;
-
-    @Column(name = "Text_Form", nullable = false, length = 100)
-    @Enumerated(EnumType.STRING)
-    private TextForm textForm;
-
     @Column(name = "Document_Number", nullable = false, length = 100, unique = true)
     private String documentNumber;
 
@@ -33,45 +30,41 @@ public class Document {
     @Column(name = "Content", length = 100)
     private String content;
 
-    @Column(name = "Field", nullable = false, length = 100)
-    @Enumerated(EnumType.STRING)
-    private DocumentField field;
-
-    @Column(name = "Issuing_Agency", nullable = false, length = 100)
-    @Enumerated(EnumType.STRING)
-    private IssuingAgency issuingAgency;
-
     @Column(name = "Signer", length = 100)
     private String signer;
 
     @Column(name = "Date_of_Issue")
-    private LocalDateTime dateOfIssue;
+    private LocalDate dateOfIssue;
 
     @Column(name = "Effective_Date")
-    private LocalDateTime effectiveDate;
+    private LocalDate effectiveDate;
 
-    @Column(name = "Files")
-    @Lob
-    private byte[] files;
+    @OneToMany(mappedBy = "document")
+    private List<FilesSave> filesSave;
 
-    // Relationships
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "Id_User", insertable = false, updatable = false)
     private Users user;
 
-    public enum TextType {
-        Văn_bản_điều_hành, Văn_bản_pháp_quy
-    }
+    @ManyToOne
+    @JsonIgnore
+    @JoinColumn(name = "category_id", nullable = false)
+    private Category category;
+    
+    @ManyToOne
+    @JsonIgnore
+    @JoinColumn(name = "id_documentField")
+    private DocumentField documentField;
 
-    public enum TextForm {
-        Quyết_định, nghị_định, thông_tư, công_văn, kế_hoạch
-    }
+    @ManyToOne
+    @JsonIgnore
+    @JoinColumn(name = "id_issuingAgency")
+    private IssuingAgency issuingAgency;
 
-    public enum DocumentField {
-        Thủ_tục_hành_chính, kế_hoạch, tài_chính, nhân_sự, đầu_tư
-    }
+    @ManyToOne
+    @JsonIgnore
+    @JoinColumn(name = "id_documentType")
+    private DocumentType documentType;
 
-    public enum IssuingAgency {
-        Bộ_Nông_Nghiệp_và_Môi_Trường, Sở_Nông_Nghiệp_và_Môi_Trường, UBND_Tỉnh
-    }
 } 

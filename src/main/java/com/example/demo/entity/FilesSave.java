@@ -20,6 +20,7 @@ public class FilesSave {
 
     @Lob
     @Column(name = "Data", nullable = false)
+    @Basic(fetch = FetchType.LAZY)
     private byte[] data;
 
     @Column(name = "UploadDate", nullable = false)
@@ -29,6 +30,12 @@ public class FilesSave {
     @JoinColumn(name = "Id_Notification")
     @JsonIgnore
     private Notification notification;
+
+    @ManyToOne
+    @JoinColumn(name = "Id_Document")
+    @JsonIgnore
+    private Document document;
+
 
     @PrePersist
     protected void onCreate() {

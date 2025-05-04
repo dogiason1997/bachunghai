@@ -35,4 +35,8 @@ public class Category {
     @OneToMany(mappedBy = "category")
     @JsonIgnore
     private List<Notification> notifications;
+
+    @OneToMany(mappedBy = "category")
+    @JsonIgnore
+    private List<Document> documents;
 }

@@ -47,7 +47,7 @@ public class Notification {
 
     @OneToMany(mappedBy = "notification", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
-    private java.util.List<FilesSave> files;
+    private List<FilesSave> files;
 
     @OneToMany(mappedBy = "notification", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore

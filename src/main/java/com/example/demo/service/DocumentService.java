@@ -1,7 +1,7 @@
 package com.example.demo.service;
 
 import com.example.demo.dto.DocumentDTO;
-import com.example.demo.dto.DocumentResponseDTO;
+// import com.example.demo.dto.DocumentResponseDTO;
 import com.example.demo.dto.DocumentSearchDTO;
 import com.example.demo.entity.*;
 import com.example.demo.repository.*;
@@ -207,12 +207,8 @@ private EntityManager entityManager;
         documentRepository.delete(document);
     }
     
-    public List<DocumentResponseDTO> searchDocuments(DocumentSearchDTO searchDTO) {
+    public List<Document> searchDocuments(DocumentSearchDTO searchDTO) {
         Specification<Document> spec = DocumentSpecification.searchByCriteria(searchDTO);
-        List<Document> documents = documentRepository.findAll(spec);
-        // Chuyển đổi từ Document sang DocumentResponseDTO để tránh lỗi serialization
-        return documents.stream()
-                .map(DocumentResponseDTO::fromDocument)
-                .collect(Collectors.toList());
+        return documentRepository.findAll(spec);
     }
 } 

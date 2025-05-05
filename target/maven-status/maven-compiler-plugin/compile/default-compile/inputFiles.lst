@@ -24,6 +24,7 @@ D:\BacHungHai\src\main\java\com\example\demo\repository\DocumentTypeRepository.j
 D:\BacHungHai\src\main\java\com\example\demo\entity\Category.java
 D:\BacHungHai\src\main\java\com\example\demo\entity\DocumentType.java
 D:\BacHungHai\src\main\java\com\example\demo\repository\NotificationDepartmentRepository.java
+D:\BacHungHai\src\main\java\com\example\demo\specification\DocumentSpecification.java
 D:\BacHungHai\src\main\java\com\example\demo\entity\AuthToken.java
 D:\BacHungHai\src\main\java\com\example\demo\entity\NotificationDepartment.java
 D:\BacHungHai\src\main\java\com\example\demo\service\NotificationService.java
@@ -58,9 +59,11 @@ D:\BacHungHai\src\main\java\com\example\demo\entity\FilesSave.java
 D:\BacHungHai\src\main\java\com\example\demo\mapper\DepartmentMapper.java
 D:\BacHungHai\src\main\java\com\example\demo\repository\DepartmentRepository.java
 D:\BacHungHai\src\main\java\com\example\demo\service\DocumentService.java
+D:\BacHungHai\src\main\java\com\example\demo\dto\DocumentSearchDTO.java
 D:\BacHungHai\src\main\java\com\example\demo\entity\Operation.java
 D:\BacHungHai\src\main\java\com\example\demo\Utils\JwtUtils.java
 D:\BacHungHai\src\main\java\com\example\demo\controller\UserController.java
+D:\BacHungHai\src\main\java\com\example\demo\dto\DocumentResponseDTO.java
 D:\BacHungHai\src\main\java\com\example\demo\entity\NotificationPosition.java
 D:\BacHungHai\src\main\java\com\example\demo\entity\CanalRoute.java
 D:\BacHungHai\src\main\java\com\example\demo\entity\Document.java

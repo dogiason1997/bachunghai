@@ -39,7 +39,7 @@ public class Document {
     @Column(name = "Effective_Date")
     private LocalDate effectiveDate;
 
-    @OneToMany(mappedBy = "document")
+    @OneToMany(mappedBy = "document", fetch = FetchType.EAGER)
     private List<FilesSave> filesSave;
 
     @ManyToOne

@@ -20,7 +20,7 @@ public class FilesSave {
 
     @Lob
     @Column(name = "Data", nullable = false)
-    @Basic(fetch = FetchType.LAZY)
+    @JsonIgnore
     private byte[] data;
 
     @Column(name = "UploadDate", nullable = false)

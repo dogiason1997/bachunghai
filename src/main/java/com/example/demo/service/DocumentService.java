@@ -1,13 +1,17 @@
 package com.example.demo.service;
 
 import com.example.demo.dto.DocumentDTO;
+import com.example.demo.dto.DocumentResponseDTO;
+import com.example.demo.dto.DocumentSearchDTO;
 import com.example.demo.entity.*;
 import com.example.demo.repository.*;
+import com.example.demo.specification.DocumentSpecification;
 
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -15,6 +19,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class DocumentService {
@@ -200,5 +205,14 @@ private EntityManager entityManager;
         }
         
         documentRepository.delete(document);
+    }
+    
+    public List<DocumentResponseDTO> searchDocuments(DocumentSearchDTO searchDTO) {
+        Specification<Document> spec = DocumentSpecification.searchByCriteria(searchDTO);
+        List<Document> documents = documentRepository.findAll(spec);
+        // Chuyển đổi từ Document sang DocumentResponseDTO để tránh lỗi serialization
+        return documents.stream()
+                .map(DocumentResponseDTO::fromDocument)
+                .collect(Collectors.toList());
     }
 } 

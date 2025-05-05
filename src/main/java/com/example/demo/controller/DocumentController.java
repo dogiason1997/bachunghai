@@ -1,6 +1,8 @@
 package com.example.demo.controller;
 
 import com.example.demo.dto.DocumentDTO;
+import com.example.demo.dto.DocumentResponseDTO;
+import com.example.demo.dto.DocumentSearchDTO;
 import com.example.demo.entity.Document;
 import com.example.demo.service.DocumentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,6 +67,16 @@ public class DocumentController {
         try {
             documentService.deleteDocument(id);
             return new ResponseEntity<>("Document deleted successfully", HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @PostMapping("/search-fillter")
+    public ResponseEntity<?> searchDocuments(@RequestBody DocumentSearchDTO searchDTO) {
+        try {
+            List<DocumentResponseDTO> documents = documentService.searchDocuments(searchDTO);
+            return new ResponseEntity<>(documents, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }

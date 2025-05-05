@@ -33,23 +33,6 @@ public class ArticleController {
         }
     }
 
-    // @GetMapping("/{id}/image")
-    // public ResponseEntity<?> getArticleImage(@PathVariable Integer id) {
-    //     try {
-    //         Article article = articleService.getArticleById(id);
-    //         if (article.getImages() == null) {
-    //             return ResponseEntity.badRequest()
-    //                 .body("No image found for article with id: " + id);
-    //         }
-    //         return ResponseEntity.ok()
-    //                 .contentType(MediaType.IMAGE_JPEG)
-    //                 .body(article.getImages());
-    //     } catch (Exception e) {
-    //         return ResponseEntity.badRequest()
-    //             .body("Error retrieving image: " + e.getMessage());
-    //     }
-    // }
-
     @GetMapping
     public ResponseEntity<?> getAllArticles() {
         try {
@@ -119,4 +102,21 @@ public class ArticleController {
                 .body("Error deleting article: " + e.getMessage());
         }
     }
+
+        // @GetMapping("/{id}/image")
+    // public ResponseEntity<?> getArticleImage(@PathVariable Integer id) {
+    //     try {
+    //         Article article = articleService.getArticleById(id);
+    //         if (article.getImages() == null) {
+    //             return ResponseEntity.badRequest()
+    //                 .body("No image found for article with id: " + id);
+    //         }
+    //         return ResponseEntity.ok()
+    //                 .contentType(MediaType.IMAGE_JPEG)
+    //                 .body(article.getImages());
+    //     } catch (Exception e) {
+    //         return ResponseEntity.badRequest()
+    //             .body("Error retrieving image: " + e.getMessage());
+    //     }
+    // }
 }

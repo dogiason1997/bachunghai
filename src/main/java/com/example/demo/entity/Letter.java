@@ -7,6 +7,8 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Data
 @Entity
@@ -71,25 +73,31 @@ public class Letter {
 
     @ManyToOne
     @JoinColumn(name = "Id_User", insertable = false, updatable = false)
+    @JsonIgnore
     private Users user;
 
     @OneToMany(mappedBy = "letter", fetch = FetchType.EAGER)
     private List<FilesSave> files;
 
     @OneToMany(mappedBy = "letter", fetch = FetchType.EAGER)
+    @JsonIgnore
     private List<LetterProcessing> letterProcessings;
 
     @OneToMany(mappedBy = "letter", fetch = FetchType.EAGER)
+    @JsonIgnore
     private List<LetterAssign> letterAssigns;
 
     @OneToMany(mappedBy = "fromLetter", fetch = FetchType.EAGER)
+    @JsonIgnore
     private List<LetterRelation> letterRelationsFrom;
 
     @OneToMany(mappedBy = "toLetter", fetch = FetchType.EAGER)
+    @JsonIgnore
     private List<LetterRelation> letterRelationsTo;
 
     
     @OneToMany(mappedBy = "letter", fetch = FetchType.EAGER)
+    @JsonIgnore
     private List<LetterDepartment> letterDepartments;
 
     public enum LetterSercurity {

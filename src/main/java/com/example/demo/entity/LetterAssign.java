@@ -3,6 +3,9 @@ package com.example.demo.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 import java.time.LocalDateTime;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Data
 @Entity
@@ -12,12 +15,6 @@ public class LetterAssign {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Id_LetterAssign")
     private Integer idLetterAssign;
-
-    @Column(name = "AssigneeUserId", nullable = false)
-    private Integer assigneeUserId;
-
-    @Column(name = "AssignedBy", nullable = false)
-    private Integer assignedBy;
 
     @Column(name = "Deadline")
     private LocalDateTime deadline;
@@ -32,7 +29,19 @@ public class LetterAssign {
     private String remarks;
 
     @ManyToOne
+    @JoinColumn(name = "AssignedById", nullable = false)
+    private Users Userassigner;
+
+    @ManyToOne
     @JoinColumn(name = "Id_Letter", nullable = false)
     private Letter letter;
+
+    @ManyToOne
+    @JoinColumn(name = "MainProcessorId", nullable = false)
+    private Users mainProcessor;
+
+    @OneToMany(mappedBy = "letterAssign", cascade = CascadeType.ALL)
+    @JsonIgnore
+    private List<LetterAssignCoordinators> coordinators;
 
 }

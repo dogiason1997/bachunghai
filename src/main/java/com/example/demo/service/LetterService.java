@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import com.example.demo.dto.LetterDTO;
+import com.example.demo.dto.LetterSearchDTO;
 import com.example.demo.entity.Category;
 import com.example.demo.entity.Letter;
 import com.example.demo.entity.Letter.DispatchPriority;
@@ -8,12 +9,14 @@ import com.example.demo.entity.Letter.LetterSercurity;
 import com.example.demo.entity.Letter.LetterType;
 import com.example.demo.repository.CategoryRepository;
 import com.example.demo.repository.LetterRepository;
+import com.example.demo.specification.LetterSpecification;
 import com.example.demo.repository.FilesSaveRepository;
 import com.example.demo.entity.FilesSave;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -167,5 +170,16 @@ public class LetterService {
         }
         
         return letter;
+
+
+
     }
+    
+    
+    public List<Letter> searchLetters(LetterSearchDTO dto) {
+        Specification<Letter> spec = LetterSpecification.filterBy(dto);
+        return letterRepository.findAll(spec);
+    }
+
+
 } 

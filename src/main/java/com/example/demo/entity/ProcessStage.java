@@ -2,6 +2,8 @@ package com.example.demo.entity;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -24,5 +26,6 @@ public class ProcessStage {
     private String description;
 
     @OneToMany(mappedBy = "processStage")
+    @JsonIgnore
     private List<LetterProcessing> letterProcessings;
 }

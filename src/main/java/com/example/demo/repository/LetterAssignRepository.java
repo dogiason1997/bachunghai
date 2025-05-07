@@ -1,9 +1,11 @@
 package com.example.demo.repository;
 
-import com.example.demo.entity.LetterAssign;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import com.example.demo.entity.LetterAssign;
+
 @Repository
 public interface LetterAssignRepository extends JpaRepository<LetterAssign, Integer> {
-}
+    
+} 

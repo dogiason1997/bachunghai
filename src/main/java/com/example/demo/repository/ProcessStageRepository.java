@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ProcessStageRepository extends JpaRepository<ProcessStage, Integer> {
+    boolean existsByStageName(String stageName);
+    boolean existsByStageNameAndStageIdNot(String stageName, Integer stageId);
 }

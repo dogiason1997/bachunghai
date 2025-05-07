@@ -1,8 +1,12 @@
 package com.example.demo.controller;
 
 import com.example.demo.dto.LetterDTO;
+import com.example.demo.dto.LetterSearchDTO;
 import com.example.demo.entity.Letter;
 import com.example.demo.service.LetterService;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -11,6 +15,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
 @RequestMapping("/bhh/letters")
@@ -61,5 +66,10 @@ public class LetterController {
     public ResponseEntity<Void> deleteLetter(@PathVariable Integer id) {
         letterService.deleteLetter(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @PostMapping("/search-filler")
+    public List<Letter> searchLetters(@RequestBody LetterSearchDTO dto) {
+        return letterService.searchLetters(dto);
     }
 } 

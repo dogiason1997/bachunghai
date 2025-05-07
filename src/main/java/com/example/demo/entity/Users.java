@@ -103,4 +103,20 @@ public class Users {
     @JsonIgnore
     private List<Operation> operations;
 
+    @OneToMany(mappedBy = "mainProcessor")
+    @JsonIgnore
+    private List<LetterAssign> assignedLetters;
+
+    @OneToMany(mappedBy = "Userassigner")
+    @JsonIgnore
+    private List<LetterAssign> assignedLettersByMe;
+
+    // @OneToMany(mappedBy = "assigner")
+    // @JsonIgnore
+    // private List<LetterAssign> assignedByMe;
+
+    @OneToMany(mappedBy = "coordinator")
+    @JsonIgnore
+    private List<LetterAssignCoordinators> letterCoordinations;
+
 }

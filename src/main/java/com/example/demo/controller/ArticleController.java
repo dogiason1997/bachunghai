@@ -14,7 +14,7 @@ import com.example.demo.entity.Article.ArticleStatus;
 import com.example.demo.service.ArticleService;
 
 @RestController
-@RequestMapping("/articles")
+@RequestMapping("bhh/articles")
 @CrossOrigin("*")
 public class ArticleController {
     @Autowired

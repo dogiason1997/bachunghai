@@ -97,11 +97,7 @@ public class Users {
 
     @OneToMany(mappedBy = "user")
     @JsonIgnore
-    private List<DispatchArrived> dispatchArrived;
-
-    @OneToMany(mappedBy = "user")
-    @JsonIgnore
-    private List<Dispatch> dispatches;
+    private List<Letter> letters;
 
     @OneToMany(mappedBy = "user")
     @JsonIgnore

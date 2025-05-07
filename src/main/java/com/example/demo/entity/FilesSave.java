@@ -36,6 +36,11 @@ public class FilesSave {
     @JsonIgnore
     private Document document;
 
+    @ManyToOne
+    @JoinColumn(name = "Id_Letter")
+    @JsonIgnore
+    private Letter letter;
+
 
     @PrePersist
     protected void onCreate() {

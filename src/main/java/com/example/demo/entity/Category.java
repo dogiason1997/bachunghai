@@ -26,11 +26,7 @@ public class Category {
 
     @OneToMany(mappedBy = "category")
     @JsonIgnore
-    private List<Dispatch> dispatches;
-
-    @OneToMany(mappedBy = "category")
-    @JsonIgnore
-    private List<DispatchArrived> dispatchArriveds;
+    private List<Letter> letter;
 
     @OneToMany(mappedBy = "category")
     @JsonIgnore

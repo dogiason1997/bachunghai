@@ -22,9 +22,14 @@ public class Department {
     @Column(name = "Describe", columnDefinition = "TEXT")
     private String describe;
 
-    // Relationships
     @OneToMany(mappedBy = "department")
     private List<UnitAgency> unitAgencies;
+
+    @OneToMany(mappedBy = "departmentOwner")
+    private List<LetterDepartment> letterDepartmentsOwner;
+
+    @OneToMany(mappedBy = "departmentCombination")
+    private List<LetterDepartment> letterDepartmentsCombination;
 
     @OneToMany(mappedBy = "department")
     private List<Users> users;

@@ -6,6 +6,7 @@ import lombok.Data;
 import java.time.LocalDate;
 
 import java.time.LocalTime;
+import java.util.List;
 
 @Data
 @Entity
@@ -31,9 +32,6 @@ public class WorkSchedule {
     @Column(name = "Content_Work", columnDefinition = "TEXT")
     private String contentWork;
 
-    @Column(name = "Participants", columnDefinition = "TEXT")
-    private String participants;
-
     @Column(name = "Locations", length = 200)
     private String locations;
 
@@ -41,4 +39,7 @@ public class WorkSchedule {
     @ManyToOne
     @JoinColumn(name = "Id_User", insertable = false, updatable = false)
     private Users user;
+
+    @OneToMany(mappedBy = "workSchedule", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Participant> participants;
 } 

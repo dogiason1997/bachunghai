@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api/process-stages")
+@RequestMapping("/process-stages")
 public class ProcessStageController {
 
     @Autowired

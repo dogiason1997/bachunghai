@@ -6,10 +6,12 @@ D:\BacHungHai\src\main\java\com\example\demo\mapper\UnitAgencyMapper.java
 D:\BacHungHai\src\main\java\com\example\demo\service\IssuingAgencyService.java
 D:\BacHungHai\src\main\java\com\example\demo\controller\LetterController.java
 D:\BacHungHai\src\main\java\com\example\demo\entity\UnitAgency.java
+D:\BacHungHai\src\main\java\com\example\demo\controller\LetterRelationController.java
 D:\BacHungHai\src\main\java\com\example\demo\controller\IssuingAgencyController.java
 D:\BacHungHai\src\main\java\com\example\demo\service\ProcessStageService.java
 D:\BacHungHai\src\main\java\com\example\demo\dto\ArticleDTO.java
 D:\BacHungHai\src\main\java\com\example\demo\repository\AuthoritiesRepository.java
+D:\BacHungHai\src\main\java\com\example\demo\service\impl\LetterRelationServiceImpl.java
 D:\BacHungHai\src\main\java\com\example\demo\repository\DocumentTypeRepository.java
 D:\BacHungHai\src\main\java\com\example\demo\dto\LetterAssignCoordinatorDTO.java
 D:\BacHungHai\src\main\java\com\example\demo\entity\DocumentType.java
@@ -63,10 +65,12 @@ D:\BacHungHai\src\main\java\com\example\demo\repository\ProcessStageRepository.j
 D:\BacHungHai\src\main\java\com\example\demo\controller\DepartmentController.java
 D:\BacHungHai\src\main\java\com\example\demo\service\UserService.java
 D:\BacHungHai\src\main\java\com\example\demo\service\impl\LetterAssignCoordinatorServiceImpl.java
+D:\BacHungHai\src\main\java\com\example\demo\dto\LetterRelationDTO.java
 D:\BacHungHai\src\main\java\com\example\demo\entity\Article.java
 D:\BacHungHai\src\main\java\com\example\demo\entity\Department.java
 D:\BacHungHai\src\main\java\com\example\demo\controller\NotificationController.java
 D:\BacHungHai\src\main\java\com\example\demo\entity\Category.java
+D:\BacHungHai\src\main\java\com\example\demo\repository\LetterRelationRepository.java
 D:\BacHungHai\src\main\java\com\example\demo\specification\DocumentSpecification.java
 D:\BacHungHai\src\main\java\com\example\demo\entity\ProcessStage.java
 D:\BacHungHai\src\main\java\com\example\demo\service\LetterAssignService.java
@@ -77,6 +81,7 @@ D:\BacHungHai\src\main\java\com\example\demo\service\LetterAssignCoordinatorServ
 D:\BacHungHai\src\main\java\com\example\demo\dto\LetterDTO.java
 D:\BacHungHai\src\main\java\com\example\demo\repository\NotificationPositionRepository.java
 D:\BacHungHai\src\main\java\com\example\demo\entity\IssuingAgency.java
+D:\BacHungHai\src\main\java\com\example\demo\service\LetterRelationService.java
 D:\BacHungHai\src\main\java\com\example\demo\controller\FileController.java
 D:\BacHungHai\src\main\java\com\example\demo\service\DocumentTypeService.java
 D:\BacHungHai\src\main\java\com\example\demo\config\SecurityConfig.java

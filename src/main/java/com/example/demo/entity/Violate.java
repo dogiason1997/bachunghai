@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 
 
 @Data
@@ -17,29 +18,23 @@ public class Violate {
 
     @Column(name = "Id_User", nullable = false)
     private Integer idUser;
+    
+    @Column(name = "Id_Violator")
+    private Integer idViolator;
+    
+    @Column(name = "Id_Level")
+    private Integer idLevel;
+    
+    @Column(name = "Id_Resource")
+    private Integer idResource;
 
     @Column(name = "Locations", length = 200)
     private String locations;
 
-    @Column(name = "Type_Violation", length = 100)
-    private String typeViolation;
 
     @Column(name = "Date_Discovery")
     private LocalDate dateDiscovery;
 
-    @Column(name = "Levels", nullable = false, length = 20)
-    @Enumerated(EnumType.STRING)
-    private ViolationLevel levels;
-
-    @Column(name = "Id_Unit", nullable = false)
-    private Integer idUnit;
-
-    @Column(name = "Id_CanalRoute", nullable = false)
-    private Integer idCanalRoute;
-
-    @Column(name = "Edges", nullable = false, length = 20)
-    @Enumerated(EnumType.STRING)
-    private EdgeType edges;
 
     @Column(name = "Latitude", precision = 9, scale = 6)
     private BigDecimal latitude;
@@ -47,42 +42,42 @@ public class Violate {
     @Column(name = "Longitude", precision = 9, scale = 6)
     private BigDecimal longitude;
 
-    @Column(name = "Name_Violation", length = 200)
-    private String nameViolation;
-
-    @Column(name = "Cmnd_Violation", length = 50, unique = true)
-    private String cmndViolation;
-
-    @Column(name = "Tell_Violation", length = 100)
-    private String tellViolation;
-
     @Column(name = "Organize", length = 200)
     private String organize;
 
-    @Column(name = "Addresss", length = 300)
-    private String addresss;
-
     @Column(name = "Describe_Violation",length = 100)
-    private String describeViolation;
-
-    @Column(name = "File_Violation")
-    @Lob
-    private byte[] fileViolation;
+    private String describeViolation;    
 
     // Relationships
+    
+    @OneToMany(mappedBy = "violate")
+    private List<ViolateUserAssignment> userAssignments;
+    
+    @ManyToOne
+    @JoinColumn(name = "Id_Violator", insertable = false, updatable = false)
+    private Violator violator;
+    
+    @ManyToOne
+    @JoinColumn(name = "Id_Level", insertable = false, updatable = false)
+    private ViolationLevel violationLevel;
+    
+    @ManyToOne
+    @JoinColumn(name = "Id_Resource", insertable = false, updatable = false)
+    private WaterResource waterResource;
+    
+    @OneToMany(mappedBy = "violate")
+    private List<ViolateStepDetail> violateStepDetails;
+    
+    @OneToMany(mappedBy = "violate")
+    private List<ViolateTypeMapping> violateTypeMappings;
+    
+    @OneToMany(mappedBy = "violate")
+    private List<ViolationProcessings> violationProcessings;
+
+    @OneToMany(mappedBy = "violate")
+    private List<FilesSave> filesSaves;
+
     @ManyToOne
     @JoinColumn(name = "Id_User", insertable = false, updatable = false)
     private Users user;
-
-    @ManyToOne
-    @JoinColumn(name = "Id_CanalRoute", insertable = false, updatable = false)
-    private CanalRoute canalRoute;
-
-    public enum ViolationLevel {
-        Thấp, Trung_bình, Cao
-    }
-
-    public enum EdgeType {
-        Bờ_tả, Bờ_hữu, không_xác_định
-    }
 } 

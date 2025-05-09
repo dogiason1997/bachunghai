@@ -94,6 +94,14 @@ public class Users {
     @OneToMany(mappedBy = "user")
     @JsonIgnore
     private List<Violate> violates;
+    
+    @OneToMany(mappedBy = "user")
+    @JsonIgnore
+    private List<ViolateUserAssignment> violateAssignments;
+    
+    @OneToMany(mappedBy = "assigner")
+    @JsonIgnore
+    private List<ViolateUserAssignment> violateAssignmentsMadeByMe;
 
     @OneToMany(mappedBy = "user")
     @JsonIgnore

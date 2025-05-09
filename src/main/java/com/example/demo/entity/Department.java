@@ -34,4 +34,7 @@ public class Department {
     @OneToMany(mappedBy = "department")
     private List<Users> users;
 
+    @OneToMany(mappedBy = "department")
+    private List<WaterResource> waterResources;
+
 } 

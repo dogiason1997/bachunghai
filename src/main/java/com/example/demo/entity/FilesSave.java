@@ -41,6 +41,11 @@ public class FilesSave {
     @JsonIgnore
     private Letter letter;
 
+    @ManyToOne
+    @JoinColumn(name = "Id_Violate")
+    @JsonIgnore
+    private Violate violate;
+
 
     @PrePersist
     protected void onCreate() {

@@ -53,12 +53,14 @@ D:\BacHungHai\src\main\java\com\example\demo\specification\LetterSpecification.j
 D:\BacHungHai\src\main\java\com\example\demo\repository\DepartmentRepository.java
 D:\BacHungHai\src\main\java\com\example\demo\entity\ViolateUserAssignment.java
 D:\BacHungHai\src\main\java\com\example\demo\exception\ErrorResponse.java
+D:\BacHungHai\src\main\java\com\example\demo\service\impl\ViolateServiceImpl.java
 D:\BacHungHai\src\main\java\com\example\demo\Utils\JwtUtils.java
 D:\BacHungHai\src\main\java\com\example\demo\exception\ResourceNotFoundException.java
 D:\BacHungHai\src\main\java\com\example\demo\dto\WaterResourceDTO.java
 D:\BacHungHai\src\main\java\com\example\demo\repository\ViolationLevelRepository.java
 D:\BacHungHai\src\main\java\com\example\demo\service\ParticipantService.java
 D:\BacHungHai\src\main\java\com\example\demo\entity\LetterDepartment.java
+D:\BacHungHai\src\main\java\com\example\demo\repository\ViolateRepository.java
 D:\BacHungHai\src\main\java\com\example\demo\entity\DocumentField.java
 D:\BacHungHai\src\main\java\com\example\demo\repository\LetterAssignRepository.java
 D:\BacHungHai\src\main\java\com\example\demo\Auth\AuthEntryPointJwt.java
@@ -80,6 +82,7 @@ D:\BacHungHai\src\main\java\com\example\demo\dto\DepartmentDTO.java
 D:\BacHungHai\src\main\java\com\example\demo\controller\GreettingController.java
 D:\BacHungHai\src\main\java\com\example\demo\service\ViolationLevelService.java
 D:\BacHungHai\src\main\java\com\example\demo\entity\Vehicle.java
+D:\BacHungHai\src\main\java\com\example\demo\dto\ViolateDTO.java
 D:\BacHungHai\src\main\java\com\example\demo\dto\DocumentDTO.java
 D:\BacHungHai\src\main\java\com\example\demo\controller\UnitAgencyController.java
 D:\BacHungHai\src\main\java\com\example\demo\repository\ProcessStageRepository.java
@@ -106,6 +109,7 @@ D:\BacHungHai\src\main\java\com\example\demo\repository\WorkScheduleRepository.j
 D:\BacHungHai\src\main\java\com\example\demo\dto\LetterSearchDTO.java
 D:\BacHungHai\src\main\java\com\example\demo\service\ArticleService.java
 D:\BacHungHai\src\main\java\com\example\demo\service\LetterAssignCoordinatorService.java
+D:\BacHungHai\src\main\java\com\example\demo\controller\ViolateController.java
 D:\BacHungHai\src\main\java\com\example\demo\dto\LetterDTO.java
 D:\BacHungHai\src\main\java\com\example\demo\repository\NotificationPositionRepository.java
 D:\BacHungHai\src\main\java\com\example\demo\entity\IssuingAgency.java
@@ -142,6 +146,7 @@ D:\BacHungHai\src\main\java\com\example\demo\entity\ViolateStepDetail.java
 D:\BacHungHai\src\main\java\com\example\demo\repository\FilesSaveRepository.java
 D:\BacHungHai\src\main\java\com\example\demo\service\impl\LetterAssignServiceImpl.java
 D:\BacHungHai\src\main\java\com\example\demo\controller\ArticleController.java
+D:\BacHungHai\src\main\java\com\example\demo\service\ViolateService.java
 D:\BacHungHai\src\main\java\com\example\demo\service\impl\ViolatorServiceImpl.java
 D:\BacHungHai\src\main\java\com\example\demo\repository\UsersRepository.java
 D:\BacHungHai\src\main\java\com\example\demo\service\LetterService.java

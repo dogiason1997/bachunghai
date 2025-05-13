@@ -35,10 +35,6 @@ public class WaterResource {
     @JoinColumn(name = "Id_Department")
     @JsonIgnore
     private Department department;
-    
-    // @Column(name = "Description", length = 500)
-    // private String description;
-    
     // Relationship
     @OneToMany(mappedBy = "waterResource")
     @JsonIgnore

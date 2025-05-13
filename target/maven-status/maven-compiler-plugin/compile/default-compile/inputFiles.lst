@@ -142,13 +142,13 @@ D:\BacHungHai\src\main\java\com\example\demo\entity\Document.java
 D:\BacHungHai\src\main\java\com\example\demo\exception\DuplicateResourceException.java
 D:\BacHungHai\src\main\java\com\example\demo\entity\Authorities.java
 D:\BacHungHai\src\main\java\com\example\demo\entity\ContactFeedback.java
+D:\BacHungHai\src\main\java\com\example\demo\exception\ArticleException.java
 D:\BacHungHai\src\main\java\com\example\demo\entity\ViolateStepDetail.java
 D:\BacHungHai\src\main\java\com\example\demo\repository\FilesSaveRepository.java
 D:\BacHungHai\src\main\java\com\example\demo\service\impl\LetterAssignServiceImpl.java
 D:\BacHungHai\src\main\java\com\example\demo\controller\ArticleController.java
 D:\BacHungHai\src\main\java\com\example\demo\service\ViolateService.java
 D:\BacHungHai\src\main\java\com\example\demo\service\impl\ViolatorServiceImpl.java
-D:\BacHungHai\src\main\java\com\example\demo\repository\UsersRepository.java
 D:\BacHungHai\src\main\java\com\example\demo\service\LetterService.java
 D:\BacHungHai\src\main\java\com\example\demo\service\DepartmentService.java
 D:\BacHungHai\src\main\java\com\example\demo\service\UnitAgencyService.java

@@ -46,6 +46,11 @@ public class FilesSave {
     @JsonIgnore
     private Violate violate;
 
+    @ManyToOne
+    @JoinColumn(name = "Id_Article")
+    @JsonIgnore
+    private Article article;
+
 
     @PrePersist
     protected void onCreate() {

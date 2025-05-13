@@ -3,7 +3,8 @@ package com.example.demo.service;
 import com.example.demo.dto.WorkScheduleDTO;
 import com.example.demo.entity.Users;
 import com.example.demo.entity.WorkSchedule;
-import com.example.demo.repository.UsersRepository;
+import com.example.demo.repository.UserRepository;
+
 import com.example.demo.repository.WorkScheduleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -20,10 +21,10 @@ import java.util.stream.Collectors;
 public class WorkScheduleService {
 
     private final WorkScheduleRepository workScheduleRepository;
-    private final UsersRepository usersRepository;
+    private final UserRepository usersRepository;
 
     @Autowired
-    public WorkScheduleService(WorkScheduleRepository workScheduleRepository, UsersRepository usersRepository) {
+    public WorkScheduleService(WorkScheduleRepository workScheduleRepository, UserRepository usersRepository) {
         this.workScheduleRepository = workScheduleRepository;
         this.usersRepository = usersRepository;
     }

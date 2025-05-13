@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @Entity
@@ -27,10 +28,6 @@ public class Article {
     @Column(name = "Id_User", nullable = false)
     private Integer idUser;
 
-    @Column(name = "Images")
-    @Lob
-    private byte[] images;
-
     @Column(name = "Status", nullable = false)
     @Convert(converter = ArticleStatusConverter.class)
     private ArticleStatus status;
@@ -48,28 +45,43 @@ public class Article {
     @JsonIgnore
     private Users user;
 
+    @OneToMany(mappedBy = "article")
+    @JsonIgnore
+    private List<FilesSave> files;
+
     public enum ArticleStatus {
         NHAP("Nháp"),
         DA_XUAT_BAN("Đã xuất bản");
-
+        // DA_LUU_TRU("Đã lưu trữ"), 
+        // DA_HUY("Đã hủy");         
+    
         private final String value;
-
+    
         ArticleStatus(String value) {
             this.value = value;
         }
-
+    
         public String getValue() {
             return value;
         }
-    }
 
+        public static ArticleStatus fromValue(String value) {
+            for (ArticleStatus status : ArticleStatus.values()) {
+                if (status.getValue().equals(value)) {
+                    return status;
+                }
+            }
+            throw new IllegalArgumentException("Unknown value: " + value);
+        }
+    }
+    
     @Converter
     public static class ArticleStatusConverter implements AttributeConverter<ArticleStatus, String> {
         @Override
         public String convertToDatabaseColumn(ArticleStatus attribute) {
             return attribute == null ? null : attribute.getValue();
         }
-
+    
         @Override
         public ArticleStatus convertToEntityAttribute(String dbData) {
             if (dbData == null) {
